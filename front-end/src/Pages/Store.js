@@ -3,7 +3,7 @@ import Footer from "../Components/Footer"
 import NavigationBar from "../Components/NavigationBar"
 
 function Store() {
-    let Items = [
+    let items = [
         {
             title: "Album",
             link: "https://google.com",
@@ -31,7 +31,7 @@ function Store() {
     ]
 
     function storeItems() {
-        return Items.map((item) => {
+        return items.map((item) => {
             return (
                 <div className="col-12 col-md-6 col-xxl-4">
                     <Card className="HomeShopCard">
