@@ -1,0 +1,143 @@
+body {
+  color: white!important;
+}
+a {
+  color: #FFE3F6!important;
+}
+a:hover {
+  color: #4A306D!important;
+}
+
+.nav-color {
+  background-color: #C89FDA;
+  margin-bottom: 18px;
+}
+.homeHead {
+  font-family: 'Allura', cursive;
+  font-size: 50px;
+  position: relative; top: 10px;
+  color: white!important;
+  z-index: 1;
+}
+.nav-link {
+  color: white!important;
+}
+.nav-link:hover {
+  color: #4A306D!important;
+}
+
+.caraImg {
+  width: 100%;
+  aspect-ratio: 3 / 2!important;
+}
+.rowSpace {
+  margin: 18px 0px!important;
+}
+.HomeShopCard {
+  margin: 10px 0px!important;
+  background-color: #4A306D!important;
+  color: white!important;
+  padding: 3px;
+}
+.HomeRighthandCard {
+  background-color: black!important;
+}
+.HomeLefthandCardImg {
+  width: 60%;
+}
+.featured {
+  color: white!important;
+  font-family: 'Allura', cursive;
+  font-size: 40px;
+  border: 1px solid #C89FDA!important;
+}
+.featuredBtn {
+  background-color: #C89FDA!important;
+  border-color: #4A306D!important;
+}
+.infoCard {
+  background-color: black!important;
+  color: white!important;
+  border: 1px solid #C89FDA!important;
+  margin: 18px 0px;
+}
+.footerL {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.footerR {
+  position: relative; top: 48px;
+}
+
+
+/*Bio*/
+.bioRow {
+  padding: 18px!important;
+}
+.willisCanadaBioImg {
+  height: 100%;
+  margin-top: 100px!important;
+}
+.bioHeading {
+  font-family: 'Allura', cursive;
+  font-size: 40px;
+}
+
+/*Photos*/
+.photosImg {
+  width: 100%;
+  margin: 10px 5px!important;
+  position: relative; left: -5px!important;
+}
+
+/* Events */
+.event {
+  border: 1px solid #C89FDA!important;
+  margin: 18px 0px;
+}
+.textInEvent {
+  margin-top: 10px;
+}
+.eventHeaderOver {
+  border: 1px solid #C89FDA!important;
+  width: 200px;
+  margin: 20px;
+}
+.eventHeader {
+  font-family: 'Allura', cursive;
+  font-size: 50px;
+  margin-top: 10px!important;
+}
+
+/* Contact */
+.OverContactInfo {
+  border: 1px solid #C89FDA!important;
+}
+.contactInfo {
+  margin: 15px;
+}
+.willisHeadShot {
+  height: 200px!important;
+}
+.flyer {
+  height: 200px!important;
+}
+
+@media (max-width: 500px) {
+  .footerR {
+    position: relative; top: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .HomeRighthandCard {
+    margin-top: 18px!important;
+  }
+  
+}
+
+@media (min-width: 768px) {
+  .homeHead {
+    font-size: 65px;
+  }
+}
