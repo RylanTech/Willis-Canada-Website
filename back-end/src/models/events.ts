@@ -1,18 +1,16 @@
 import { DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from "sequelize";
 
-export class item extends Model<InferAttributes<item>, InferCreationAttributes<item>>{
-    declare itemId: number;
-    declare title: string
-    declare link: string;
-    declare imageUrl: string;
-    declare releaseDate: Date;
+export class events extends Model<InferAttributes<events>, InferCreationAttributes<events>>{
+    declare eventId: number;
+    declare title: string;
+    declare date: Date;
+    declare location: string;
     declare description: string;
-    declare price: string;
 }
 
-export function itemFactory(sequelize: Sequelize) {
-    item.init({
-        itemId: {
+export function eventFactory(sequelize: Sequelize) {
+    events.init({
+        eventId: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
@@ -22,30 +20,22 @@ export function itemFactory(sequelize: Sequelize) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        link: {
-            type: DataTypes.STRING,
+        date: {
+            type: DataTypes.DATE,
             allowNull: false
         },
-        imageUrl: {
+        location: {
             type: DataTypes.STRING,
-            allowNull: true
-        },
-        releaseDate: {
-            type: DataTypes.DATE,
-            allowNull: true
+            allowNull: false
         },
         description: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        price: {
             type: DataTypes.STRING,
             allowNull: false
         }
     },
         {
             freezeTableName: true,
-            tableName: 'items',
+            tableName: 'events',
             sequelize,
             collate: 'utf8_general_ci',
         })

@@ -123,6 +123,14 @@ a:hover {
   height: 200px!important;
 }
 
+/* Admin Featured */
+.adminShopCards {
+  text-align: left;
+}
+.fbtn {
+  margin: 0px 20px;
+}
+
 @media (max-width: 500px) {
   .footerR {
     position: relative; top: 0px;

@@ -1,14 +1,14 @@
 import { DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from "sequelize";
 
 export class posts extends Model<InferAttributes<posts>, InferCreationAttributes<posts>>{
-    declare slideId: number;
+    declare postId: number;
     declare title: string;
     declare message: string;
 }
 
 export function postFactory(sequelize: Sequelize) {
     posts.init({
-        slideId: {
+        postId: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,

@@ -1,14 +1,13 @@
 import { DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from "sequelize";
 
-export class slides extends Model<InferAttributes<slides>, InferCreationAttributes<slides>>{
-    declare slideId: number;
+export class photos extends Model<InferAttributes<photos>, InferCreationAttributes<photos>>{
+    declare photosId: number;
     declare imageUrl: string;
-    declare message: string;
 }
 
-export function slideFactory(sequelize: Sequelize) {
-    slides.init({
-        slideId: {
+export function photosFactory(sequelize: Sequelize) {
+    photos.init({
+        photosId: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
@@ -17,15 +16,11 @@ export function slideFactory(sequelize: Sequelize) {
         imageUrl: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        message: {
-            type: DataTypes.STRING,
-            allowNull: true
         }
     },
         {
             freezeTableName: true,
-            tableName: 'posts',
+            tableName: 'images',
             sequelize,
             collate: 'utf8_general_ci',
         })

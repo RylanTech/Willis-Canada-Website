@@ -1,6 +1,13 @@
 import express, { NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
 import { db } from './models';
+import eventRoutes from './routes/eventRoutes'
+import itemRoutes from './routes/itemRoutes'
+import photoRoutes from './routes/photoRoutes'
+import postRoutes from './routes/postRoutes'
+import slideRoutes from './routes/slideRoutes'
+import userRoutes from './routes/userRoutes'
+import { verify } from './controllers/userController';
 
 const app = express();
 
@@ -15,10 +22,13 @@ app.use(cors());
 
 
 // Routing Middleware
-app.use('/api/items', );
-app.use('/api/posts', );
-app.use('/api/slides', );
-app.use('/api/user', );
+app.use('/api/item', itemRoutes);
+app.use('/api/post', postRoutes);
+app.use('/api/slide', slideRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/photo', photoRoutes);
+app.use('/api/event', eventRoutes);
+app.use('/api/verify', verify);
 
 
 app.use(( req: Request, res: Response, next: NextFunction ) => {
@@ -32,4 +42,4 @@ db.sync().then(() => {
 });
 
 
-app.listen(3000);
+app.listen(3001);

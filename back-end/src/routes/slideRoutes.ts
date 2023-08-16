@@ -1,11 +1,11 @@
 import { Router } from 'express';
+import { addSlide, getSlide, getallSlides, removeSlide } from '../controllers/slideController';
 
 const router = Router();
 
-router.get("/", getAllSlides);
-router.get("/", getSlide);
+router.get("/", getallSlides);
+router.get("/:id", getSlide);
 router.post("/", addSlide);
-router.put("/", editSlide);
-router.delete("/", removeSlide);
+router.delete("/:id", removeSlide);
 
 export default router; 
