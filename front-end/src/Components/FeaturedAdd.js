@@ -3,8 +3,9 @@ import { useNavigate, useParams } from "react-router-dom"
 import { ItemContext } from "../Context/itemContext"
 import NavigationBar from "./NavigationBar"
 import { Button, Container, Form, Row } from "react-bootstrap"
+import AdminNavigationBar from "./AdminNavigationBar"
 
-function FeaturedEdit() {
+function FeaturedAdd() {
     let params = useParams()
     let navigate = useNavigate()
     let [item, setItem] = useState({
@@ -19,18 +20,18 @@ function FeaturedEdit() {
 
     let { title, description, price, itemId, imageUrl, releaseDate, link } = item
 
-    const { getItem, editItem } = useContext(ItemContext)
+    const { getItem, addItem } = useContext(ItemContext)
 
-    useEffect(() => {
-        if (itemId === undefined) return
-        async function fetch() {
-            await getItem(params.itemId)
-                .then((item) => {
-                    setItem(item)
-                })
-        }
-        fetch()
-    }, [itemId])
+    // useEffect(() => {
+    //     if (itemId === undefined) return
+    //     async function fetch() {
+    //         await getItem(params.itemId)
+    //             .then((item) => {
+    //                 setItem(item)
+    //             })
+    //     }
+    //     fetch()
+    // }, [itemId])
 
     function handleChange(event) {
         setItem((preValue) => {
@@ -41,14 +42,14 @@ function FeaturedEdit() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        editItem(item).then(() =>
+        addItem(item).then(() =>
           navigate(`/admin/featured`)
         )
     }
 
     return (
         <>
-            <NavigationBar />
+            <AdminNavigationBar />
             <Container>
                 <Row>
                     <div className="col-lg-2" />
@@ -75,7 +76,7 @@ function FeaturedEdit() {
                                 <Form.Control type="text" name="imageUrl" value={imageUrl} onChange={handleChange} />
                             </Form.Group>
                             <Form.Group style={{ margin: "20px" }}>
-                                <Form.Label>Link to but</Form.Label>
+                                <Form.Label>Link to buy</Form.Label>
                                 <Form.Control type="text" name="link" value={link} onChange={handleChange} />
                             </Form.Group>
                             <Form.Group style={{ margin: "20px" }}>
@@ -84,7 +85,7 @@ function FeaturedEdit() {
                                 <textarea className="itemTA col-12" type="text" name="description" value={description} onChange={handleChange} />
                                 {/* <Form.Control type="text" name="description" value={description} onChange={handleChange} /> */}
                             </Form.Group>
-                            <Button type="submit">Edit</Button>
+                            <Button type="submit">Add</Button>
                         </Form>
                     </div>
                 </Row>
@@ -92,4 +93,4 @@ function FeaturedEdit() {
         </>
     )
 }
-export default FeaturedEdit
+export default FeaturedAdd

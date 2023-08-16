@@ -8,6 +8,7 @@ import Store from "./Pages/Store";
 import AdminLogin from "./Pages/Admin/AdminLogin";
 import AdminFeatured from "./Pages/Admin/AdminFeatured";
 import FeaturedEdit from "./Components/FeaturedEdit";
+import FeaturedAdd from "./Components/FeaturedAdd";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/admin" element={<AdminLogin/>}/>
         <Route path="/admin/featured" element={<AdminFeatured/>}/>
         <Route path="/admin/featured/edit/:itemId" element={<FeaturedEdit/>}/>
+        <Route path="/admin/featured/add" element={<FeaturedAdd/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -131,6 +131,12 @@ a:hover {
   margin: 0px 20px;
 }
 
+/* Edit Item */
+.cashs {
+  font-size: 25px;
+}
+
+
 @media (max-width: 500px) {
   .footerR {
     position: relative; top: 0px;

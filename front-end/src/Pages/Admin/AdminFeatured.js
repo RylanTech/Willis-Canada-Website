@@ -9,7 +9,7 @@ function AdminFeatured() {
     const [items, setItems] = useState()
 
     const { verify } = useContext(UserContext)
-    const { getItems } = useContext(ItemContext)
+    const { getItems, deleteItem } = useContext(ItemContext)
 
     let navigate = useNavigate()
 
@@ -55,7 +55,11 @@ function AdminFeatured() {
                             <Link to={`/admin/featured/edit/${item.itemId}`}>
                             <Button className="fbtn">Edit</Button>
                             </Link>
-                            <Button className="fbtn" variant="danger">Delete</Button>
+                            <Button onClick={() => {
+                                deleteItem(item.itemId).then(() => {
+                                    window.location.reload()
+                                })
+                            }} className="fbtn" variant="danger">Delete</Button>
                         </center>
                         <hr/>
                         </div>
@@ -90,7 +94,15 @@ function AdminFeatured() {
                         {shoppingItems()}
                     </div>
                     </center>
-
+                </Row>
+                <Row>
+                    <center>
+                        <Link to={`/admin/featured/add`}>
+                            <Button>
+                                Add Item
+                            </Button>
+                        </Link>
+                    </center>
                 </Row>
             </Container>
         </>

@@ -29,6 +29,10 @@ export const ItemProvider = (props) => {
             Authorization: `Bearer ${localStorage.getItem('WCLogin')}`
         };
 
+        if (item.releaseDate === "") {
+            delete item.releaseDate
+        }
+
         return axios.post(baseUrl + "api/item/", item, {headers: myHeaders})
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
@@ -46,6 +50,19 @@ export const ItemProvider = (props) => {
                 return new Promise(resolve => resolve(response.data));
             }
             );
+    }
+
+    function deleteItem(itemId) {
+        let myHeaders = {
+            Authorization: `Bearer ${localStorage.getItem('WCLogin')}`
+        };
+
+        return axios.delete(baseUrl + `api/item/${itemId}`, {headers: myHeaders})
+            .then(response => {
+                return new Promise(resolve => resolve(response.data));
+            }
+            );
+
     }
 
 
@@ -77,7 +94,8 @@ export const ItemProvider = (props) => {
                 addItem,
                 getItems,
                 editItem,
-                getItem
+                getItem,
+                deleteItem
             }}
         >
             {props.children}
