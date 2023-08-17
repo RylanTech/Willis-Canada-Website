@@ -2,7 +2,7 @@ import { DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize }
 
 export class posts extends Model<InferAttributes<posts>, InferCreationAttributes<posts>>{
     declare postId: number;
-    declare title: string;
+    declare title: string
     declare message: string;
 }
 
@@ -19,7 +19,7 @@ export function postFactory(sequelize: Sequelize) {
             allowNull: false
         },
         message: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false
         }
     },

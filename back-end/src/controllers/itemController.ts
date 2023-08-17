@@ -45,7 +45,6 @@ export const addItem: RequestHandler = async (req, res, next) => {
         }
 
         if (newItem.title && newItem.link && newItem.price) {
-            console.log(newItem)
             let created = await item.create(newItem)
             if (created) {
                 res.status(200).send(created)

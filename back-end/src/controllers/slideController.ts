@@ -59,6 +59,36 @@ export const addSlide: RequestHandler = async (req, res, next) => {
     }
 };
 
+export const editSlide: RequestHandler = async (req, res, next) => {
+    try {
+        let id = req.params.id
+
+        let usr: user | null = await verifyUser(req)
+        if (!usr) {
+            return res.status(403).send();
+        }
+
+        const newSlide: slides = req.body
+
+        if (!newSlide) {
+            return res.status(400).send();
+        }
+
+        if (newSlide.imageUrl) {
+            let updated = await slides.update(newSlide, { where: { slideId: id } })
+            if (updated) {
+                res.status(200).send(updated)
+            } else {
+                res.status(500).send()
+            }
+        } else {
+            res.status(400).send()
+        }
+    } catch {
+        res.status(500).send()
+    }
+};
+
 export const removeSlide: RequestHandler = async (req, res, next) => {
     try {
         let user: user | null = await verifyUser(req);

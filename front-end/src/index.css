@@ -136,6 +136,25 @@ a:hover {
   font-size: 25px;
 }
 
+/* Admin Posts */
+.adminPosts {
+  text-align: left;
+}
+
+/* admin slide */
+.editSlideImg {
+  width: 100%;
+}
+.slideMessage {
+  margin-top: 10px!important;
+}
+.slideMsg {
+  border: 1px solid #C89FDA!important;
+  padding: 10px;
+}
+.slideBtns {
+  margin: 8px 0px!important;
+}
 
 @media (max-width: 500px) {
   .footerR {

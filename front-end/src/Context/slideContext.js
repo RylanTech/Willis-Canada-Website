@@ -1,63 +1,57 @@
 import axios from "axios";
 import { createContext, useState } from "react";
 
-export const ItemContext = createContext()
+export const SlideContext = createContext()
 let baseUrl = "http://localhost:3001/"
 
-export const ItemProvider = (props) => {
+export const SlideProvider = (props) => {
 
-    function getItems() {
-
-        return axios.get(baseUrl + "api/item/getall")
+    function getSlides() {
+        return axios.get(baseUrl + "api/slide/getall")
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }
             );
     }
 
-    function getItem(itemId) {
-
-        return axios.get(baseUrl + `api/item/${itemId}`)
+    function getSlide(slideId) {
+        return axios.get(baseUrl + `api/slide/${slideId}`)
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }
             );
     }
 
-    function addItem(item) {
+    function addSlide(slide) {
         let myHeaders = {
             Authorization: `Bearer ${localStorage.getItem('WCLogin')}`
         };
 
-        if (item.releaseDate === "") {
-            delete item.releaseDate
-        }
-
-        return axios.post(baseUrl + "api/item/", item, {headers: myHeaders})
+        return axios.post(baseUrl + "api/slide/", slide, {headers: myHeaders})
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }
             );
     }
 
-    function editItem(item) {
+    function editSlide(slide) {
         let myHeaders = {
             Authorization: `Bearer ${localStorage.getItem('WCLogin')}`
         };
 
-        return axios.put(baseUrl + `api/item/${item.itemId}`, item, {headers: myHeaders})
+        return axios.put(baseUrl + `api/slide/${slide.slideId}`, slide, {headers: myHeaders})
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }
             );
     }
 
-    function deleteItem(itemId) {
+    function deleteSlide(slideId) {
         let myHeaders = {
             Authorization: `Bearer ${localStorage.getItem('WCLogin')}`
         };
 
-        return axios.delete(baseUrl + `api/item/${itemId}`, {headers: myHeaders})
+        return axios.delete(baseUrl + `api/slide/${slideId}`, {headers: myHeaders})
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }
@@ -66,16 +60,16 @@ export const ItemProvider = (props) => {
     }
 
     return (
-        <ItemContext.Provider
+        <SlideContext.Provider
             value={{
-                addItem,
-                getItems,
-                editItem,
-                getItem,
-                deleteItem
+                addSlide,
+                getSlides,
+                editSlide,
+                getSlide,
+                deleteSlide
             }}
         >
             {props.children}
-        </ItemContext.Provider>
+        </SlideContext.Provider>
     )
 }

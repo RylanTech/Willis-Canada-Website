@@ -54,9 +54,11 @@ export const addPost: RequestHandler = async (req, res, next) => {
         } else {
             res.status(400).send()
         }
-    } catch {
-        res.status(500).send()
+    } catch (error) {
+        console.error(error); // Log the error for debugging
+        res.status(500).send();
     }
+    
 };
 
 export const editPost: RequestHandler = async (req, res, next) => {

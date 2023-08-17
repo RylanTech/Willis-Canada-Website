@@ -26,25 +26,29 @@ export const getallUsers: RequestHandler = async (req, res, next) => {
 };
 
 export const createUser: RequestHandler = async (req, res, next) => {
-
-    let newUser: user = req.body;
-    if (newUser.username && newUser.password) {
-        let hashedPassword = await hashPassword(newUser.password);
-        newUser.password = hashedPassword;
-        let created = await user.create(newUser);
-        res.status(201).json({
-            username: created.username,
-            userId: created.userId
-        });
-    }
-    else {
-        res.status(400).send('Username and password required');
+    try {
+        let newUser: user = req.body;
+        if (newUser.username && newUser.password) {
+            let hashedPassword = await hashPassword(newUser.password);
+            newUser.password = hashedPassword;
+            let created = await user.create(newUser);
+            res.status(201).json({
+                username: created.username,
+                userId: created.userId
+            });
+        }
+        else {
+            res.status(400).send('Username and password required');
+        }
+    } catch {
+        res.status(500).send()
     }
 }
 
 export const loginUser: RequestHandler = async (req, res, next) => {
 
-    // Look up user by their username
+    try {
+            // Look up user by their username
     console.log(req.body)
     let existingUser: user | null = await user.findOne({
         where: { username: req.body.username }
@@ -65,6 +69,9 @@ export const loginUser: RequestHandler = async (req, res, next) => {
     }
     else {
         res.status(401).json('Invalid username');
+    }
+    } catch {
+        res.status(500).send()
     }
 }
 

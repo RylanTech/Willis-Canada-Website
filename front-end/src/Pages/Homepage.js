@@ -1,96 +1,79 @@
 import { Button, Card, Carousel, Container, Row } from "react-bootstrap"
 import NavigationBar from "../Components/NavigationBar"
 import Footer from "../Components/Footer"
+import { useContext, useEffect, useState } from "react"
+import { ItemContext } from "../Context/itemContext"
+import { PostContext } from "../Context/postContext"
+import { SlideContext } from "../Context/slideContext"
 
 function Homepage() {
-    let slides = [
-        {
-            imageUrl: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-            message: "You can add graphics here to display whatever you would like"
-        },
-        {
-            imageUrl: "https://www.liquidsandsolids.com/wp-content/uploads/2022/09/How-a-Purple-Sky-Can-Affect-You-Emotionally.jpg",
-            message: "You can add graphics here to display whatever you would like"
-        },
-        {
-            imageUrl: "https://images.unsplash.com/photo-1480449806965-eb8eabee75ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-        }
-    ]
+    const [items, setItems] = useState()
+    const [posts, setPosts] = useState()
+    const [slides, setSlides] = useState()
 
-    let posts = [
-        {
-            title: "Text post",
-            message: "You would be able to post text content here such as advertizing your mailing list, where you would be next and whatever else you would like."
-        }
-    ]
+    const { getItems } = useContext(ItemContext)
+    const { getPosts } = useContext(PostContext)
+    const { getSlides } = useContext(SlideContext)
 
-    let items = [
-        {
-            title: "Album",
-            link: "https://google.com",
-            ImageUrl: "https://images.unsplash.com/photo-1487088678257-3a541e6e3922?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-            releaseDate: new Date().toString(),
-            description: "description",
-            price: "$20"
-        },
-        {
-            title: "Album",
-            link: "https://google.com",
-            ImageUrl: "https://images.unsplash.com/photo-1487088678257-3a541e6e3922?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-            releaseDate: new Date().toString(),
-            description: "description",
-            price: "$20"
-        },
-        {
-            title: "Album",
-            link: "https://google.com",
-            ImageUrl: "",
-            releaseDate: new Date().toString(),
-            description: "description",
-            price: "$20"
+    useEffect(() => {
+        async function gettingInfo() {
+            let itms = await getItems()
+            setItems(itms)
+
+            let psts = await getPosts()
+            setPosts(psts)
+
+            let slds = await getSlides()
+            setSlides(slds)
         }
-    ]
+        gettingInfo()
+    }, [])
 
     function carouselSlide() {
-        return slides.map((slide) => {
-            return (
-                <Carousel.Item>
-                    <img className="caraImg" src={slide.imageUrl} alt="Willis Canada" />
-                    <Carousel.Caption>
-                        {slide.message}
-                    </Carousel.Caption>
-                </Carousel.Item>
-            )
-        })
+        if (slides) {
+            return slides.map((slide) => {
+                return (
+                    <Carousel.Item>
+                        <img className="caraImg" src={slide.imageUrl} alt="Willis Canada" />
+                        <Carousel.Caption>
+                            {slide.message}
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                )
+            })
+        }
     }
 
     function postingPosts() {
-        return posts.map((post) => {
-            return (
-                <Card className="infoCard">
-                    <Card.Header as="h5">{post.title}</Card.Header>
-                    <Card.Body>
-                        <Card.Text>
-                            {post.message}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            )
-        })
+        if (posts) {
+            return posts.map((post) => {
+                return (
+                    <Card className="infoCard">
+                        <Card.Header as="h5">{post.title}</Card.Header>
+                        <Card.Body>
+                            <Card.Text>
+                                {post.message}
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                )
+            })
+        }
     }
 
     function shoppingItems() {
-        return items.map((item) => {
-            if (item.ImageUrl.length > 3) {
-                return (
-                    <Card className="HomeShopCard">
+        if (items) {
+            return items.map((item) => {
+                if (item.imageUrl.length > 3) {
+                    return (
+                        <Card className="HomeShopCard">
                             <Card.Header>
                                 <h5>{item.title}</h5>
                                 {item.price}
                             </Card.Header>
                             <Card.Header>
                                 <center>
-                                    <img className="HomeLefthandCardImg" src={item.ImageUrl}/>
+                                    <img className="HomeLefthandCardImg" src={item.imageUrl} />
                                 </center>
                             </Card.Header>
                             <Card.Body>
@@ -100,10 +83,10 @@ function Homepage() {
                                 <Button target="_blank" href={item.link} className="featuredBtn">Buy</Button>
                             </Card.Body>
                         </Card>
-                )
-            } else {
-                return (
-                    <Card className="HomeShopCard">
+                    )
+                } else {
+                    return (
+                        <Card className="HomeShopCard">
                             <Card.Header>
                                 <h5>{item.title}</h5>
                                 {item.price}
@@ -115,9 +98,16 @@ function Homepage() {
                                 <Button target="_blank" href={item.link} className="featuredBtn">Buy</Button>
                             </Card.Body>
                         </Card>
-                )
-            }
-        })
+                    )
+                }
+            })
+        } else {
+            return (
+                <div>
+                    No Featured Items
+                </div>
+            )
+        }
     }
     return (
         <>

@@ -20,6 +20,7 @@ function AdminNavigationBar() {
                                 <Link className="nav-link" to="/admin/photos">Photos</Link>
                                 <Link className="nav-link" to="/admin/schedule">Schedule</Link>
                                 <Link className="nav-link" to="/admin/store">Store</Link>
+                                <Link className="nav-link" to="/">Back to Home</Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>

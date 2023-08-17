@@ -25,7 +25,7 @@ export function slideFactory(sequelize: Sequelize) {
     },
         {
             freezeTableName: true,
-            tableName: 'posts',
+            tableName: 'slides',
             sequelize,
             collate: 'utf8_general_ci',
         })

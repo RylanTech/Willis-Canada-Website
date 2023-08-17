@@ -5,14 +5,20 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { UserProvider } from './Context/userContext';
 import { ItemProvider } from './Context/itemContext';
+import { PostProvider } from './Context/postContext';
+import { SlideProvider } from './Context/slideContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ItemProvider>
-      <UserProvider>
-        <App />
-      </UserProvider>
-    </ItemProvider>
+    <SlideProvider>
+      <PostProvider>
+      <ItemProvider>
+        <UserProvider>
+          <App />
+        </UserProvider>
+      </ItemProvider>
+    </PostProvider>
+    </SlideProvider>
   </React.StrictMode>
 );

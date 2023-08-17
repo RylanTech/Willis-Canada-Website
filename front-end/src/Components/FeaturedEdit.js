@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { ItemContext } from "../Context/itemContext"
 import NavigationBar from "./NavigationBar"
 import { Button, Container, Form, Row } from "react-bootstrap"
+import AdminNavigationBar from "./AdminNavigationBar"
 
 function FeaturedEdit() {
     let params = useParams()
@@ -48,7 +49,7 @@ function FeaturedEdit() {
 
     return (
         <>
-            <NavigationBar />
+            <AdminNavigationBar />
             <Container>
                 <Row>
                     <div className="col-lg-2" />

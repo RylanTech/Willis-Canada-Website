@@ -1,63 +1,57 @@
 import axios from "axios";
 import { createContext, useState } from "react";
 
-export const ItemContext = createContext()
+export const PostContext = createContext()
 let baseUrl = "http://localhost:3001/"
 
-export const ItemProvider = (props) => {
+export const PostProvider = (props) => {
 
-    function getItems() {
-
-        return axios.get(baseUrl + "api/item/getall")
+    function getPosts() {
+        return axios.get(baseUrl + "api/post/getall")
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }
             );
     }
 
-    function getItem(itemId) {
-
-        return axios.get(baseUrl + `api/item/${itemId}`)
+    function getPost(postId) {
+        return axios.get(baseUrl + `api/Post/${postId}`)
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }
             );
     }
 
-    function addItem(item) {
+    function addPost(post) {
         let myHeaders = {
             Authorization: `Bearer ${localStorage.getItem('WCLogin')}`
         };
 
-        if (item.releaseDate === "") {
-            delete item.releaseDate
-        }
-
-        return axios.post(baseUrl + "api/item/", item, {headers: myHeaders})
+        return axios.post(baseUrl + "api/post/", post, {headers: myHeaders})
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }
             );
     }
 
-    function editItem(item) {
+    function editPost(post) {
         let myHeaders = {
             Authorization: `Bearer ${localStorage.getItem('WCLogin')}`
         };
 
-        return axios.put(baseUrl + `api/item/${item.itemId}`, item, {headers: myHeaders})
+        return axios.put(baseUrl + `api/Post/${post.postId}`, post, {headers: myHeaders})
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }
             );
     }
 
-    function deleteItem(itemId) {
+    function deletePost(postId) {
         let myHeaders = {
             Authorization: `Bearer ${localStorage.getItem('WCLogin')}`
         };
 
-        return axios.delete(baseUrl + `api/item/${itemId}`, {headers: myHeaders})
+        return axios.delete(baseUrl + `api/post/${postId}`, {headers: myHeaders})
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }
@@ -66,16 +60,16 @@ export const ItemProvider = (props) => {
     }
 
     return (
-        <ItemContext.Provider
+        <PostContext.Provider
             value={{
-                addItem,
-                getItems,
-                editItem,
-                getItem,
-                deleteItem
+                addPost,
+                getPosts,
+                editPost,
+                getPost,
+                deletePost
             }}
         >
             {props.children}
-        </ItemContext.Provider>
+        </PostContext.Provider>
     )
 }

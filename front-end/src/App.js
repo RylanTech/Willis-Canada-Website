@@ -9,6 +9,12 @@ import AdminLogin from "./Pages/Admin/AdminLogin";
 import AdminFeatured from "./Pages/Admin/AdminFeatured";
 import FeaturedEdit from "./Components/FeaturedEdit";
 import FeaturedAdd from "./Components/FeaturedAdd";
+import AdminPost from "./Pages/Admin/AdminPost";
+import PostEdit from "./Components/PostsEdit";
+import PostAdd from "./Components/PostAdd";
+import AdminSlides from "./Pages/Admin/AdminSlides";
+import SlideEdit from "./Components/SlideEdit";
+import SlideAdd from "./Components/SlideAdd";
 
 function App() {
   return (
@@ -24,6 +30,12 @@ function App() {
         <Route path="/admin/featured" element={<AdminFeatured/>}/>
         <Route path="/admin/featured/edit/:itemId" element={<FeaturedEdit/>}/>
         <Route path="/admin/featured/add" element={<FeaturedAdd/>}/>
+        <Route path="/admin/posts" element={<AdminPost/>}/>
+        <Route path="/admin/posts/edit/:postId" element={<PostEdit/>}/>
+        <Route path="/admin/posts/add" element={<PostAdd/>}/>
+        <Route path="/admin/slides" element={<AdminSlides/>}/>
+        <Route path="/admin/slides/edit/:slideId" element={<SlideEdit/>}/>
+        <Route path="/admin/slides/add" element={<SlideAdd/>}/>
       </Routes>
     </BrowserRouter>
   );
