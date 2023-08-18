@@ -23,33 +23,33 @@ function AdminPost() {
             setPosts(psts)
         }
         verifing();
-    },[])
+    }, [])
 
     function postingPosts() {
         if (posts) {
             return posts.map((post) => {
                 return (
-                    <>
-                    <Card className="infoCard">
-                        <Card.Header as="h5">{post.title}</Card.Header>
-                        <Card.Body>
-                            <Card.Text>
-                                {post.message}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                    <center>
-                    <Link to={`/admin/posts/edit/${post.postId}`}>
-                    <Button className="fbtn">Edit</Button>
-                    </Link>
-                    <Button onClick={() => {
-                        deletePost(post.postId).then(() => {
-                            window.location.reload()
-                        })
-                    }} className="fbtn" variant="danger">Delete</Button>
-                </center>
-                <hr/>
-                </>
+                    <div key={post.postId}>
+                        <Card className="infoCard">
+                            <Card.Header as="h5">{post.title}</Card.Header>
+                            <Card.Body>
+                                <Card.Text>
+                                    {post.message}
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                        <center>
+                            <Link to={`/admin/posts/edit/${post.postId}`}>
+                                <Button className="fbtn">Edit</Button>
+                            </Link>
+                            <Button onClick={() => {
+                                deletePost(post.postId).then(() => {
+                                    window.location.reload()
+                                })
+                            }} className="fbtn" variant="danger">Delete</Button>
+                        </center>
+                        <hr />
+                    </div>
                 )
             })
         }
@@ -62,7 +62,7 @@ function AdminPost() {
                 <Row>
                     <center>
                         <div className="col-12 col-md-8 adminPosts">
-                        {postingPosts()}
+                            {postingPosts()}
                         </div>
                     </center>
                 </Row>

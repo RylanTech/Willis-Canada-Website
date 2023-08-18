@@ -3,13 +3,13 @@ import AdminNavigationBar from "../../Components/AdminNavigationBar"
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../../Context/userContext"
 import { Link, useNavigate } from "react-router-dom"
-import { SlideContext } from "../../Context/slideContext"
+import { PhotoContext } from "../../Context/photoContext"
 
-function AdminSlides() {
-    const [slides, setSlides] = useState()
+function AdminPhotos() {
+    const [photos, setPhotos] = useState()
 
     const { verify } = useContext(UserContext)
-    const { getSlides, deleteSlide } = useContext(SlideContext)
+    const { getPhotos, deletePhoto } = useContext(PhotoContext)
 
     let navigate = useNavigate()
 
@@ -20,32 +20,30 @@ function AdminSlides() {
                 navigate("/")
             }
 
-            let slds = await getSlides()
-            setSlides(slds)
+            let phtos = await getPhotos()
+            setPhotos(phtos)
         }
         verifing()
     }, [])
 
-    function carouselSlide() {
-        if (slides) {
-            return slides.map((slide) => {
+    function carouselPhotos() {
+        if (photos) {
+            return photos.map((photo) => {
                 return (
-                    <div key={slide.slideId}>
+                    <div key={photo.photosId}>
+                        <center>
                         <Row>
+                            <div className="col-md-2"/>
                             <div className="col-12 col-md-8">
-                                <img className="editSlideImg" src={slide.imageUrl} />
-                            </div>
-                            <div className="slideMessage col-12 col-md-4">
-                                <p className="slideMsg">{slide.message}</p>
+                                <img className="editPhotoImg" src={photo.imageUrl} />
                             </div>
                         </Row>
-                        <center>
                             <div className="slideBtns">
-                                <Link to={`/admin/slides/edit/${slide.slideId}`}>
+                                <Link to={`/admin/photos/edit/${photo.photosId}`}>
                                     <Button className="fbtn">Edit</Button>
                                 </Link>
                                 <Button onClick={() => {
-                                    deleteSlide(slide.slideId)
+                                    deletePhoto(photo.photosId)
                                     window.location.reload()
                                 }} className="fbtn" variant="danger">Delete</Button>
                             </div>
@@ -62,11 +60,11 @@ function AdminSlides() {
             <AdminNavigationBar />
             <Container>
                 <Row>
-                    {carouselSlide()}
+                    {carouselPhotos()}
                 </Row>
                 <Row>
                     <center>
-                        <Link to={`/admin/slides/add`}>
+                        <Link to={`/admin/photos/add`}>
                             <Button>
                                 Add Slide
                             </Button>
@@ -77,4 +75,4 @@ function AdminSlides() {
         </>
     )
 }
-export default AdminSlides
+export default AdminPhotos

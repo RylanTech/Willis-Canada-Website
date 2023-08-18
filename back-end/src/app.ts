@@ -7,6 +7,7 @@ import photoRoutes from './routes/photoRoutes'
 import postRoutes from './routes/postRoutes'
 import slideRoutes from './routes/slideRoutes'
 import userRoutes from './routes/userRoutes'
+import storeItemRoutes from './routes/storeItemRoutes'
 import { verify } from './controllers/userController';
 
 const app = express();
@@ -28,6 +29,7 @@ app.use('/api/slide', slideRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/photo', photoRoutes);
 app.use('/api/event', eventRoutes);
+app.use('/api/storeitem', storeItemRoutes)
 app.use('/api/verify', verify);
 
 

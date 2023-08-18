@@ -3,22 +3,22 @@ import AdminNavigationBar from "../../Components/AdminNavigationBar"
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../../Context/userContext"
 import { Link, useNavigate } from "react-router-dom"
-import { ItemContext } from "../../Context/itemContext"
+import { StoreItemContext } from "../../Context/storeItemContext"
 
-function AdminFeatured() {
-    const [items, setItems] = useState()
+function AdminStore() {
+    const [storeItems, setStoreItems] = useState()
 
     const { verify } = useContext(UserContext)
-    const { getItems, deleteItem } = useContext(ItemContext)
+    const { getStoreItems, deleteStoreItem } = useContext(StoreItemContext)
 
     let navigate = useNavigate()
 
     useEffect(() => {
         async function verifing() {
             let status = await verify()
-            let itms = await getItems()
+            let itms = await getStoreItems()
 
-            setItems(itms)
+            setStoreItems(itms)
 
             if (!status) {
                 navigate("/")
@@ -28,8 +28,8 @@ function AdminFeatured() {
     }, [])
 
     function shoppingItems() {
-        if (items) {
-            return items.map((item) => {
+        if (storeItems) {
+            return storeItems.map((item) => {
                 if (item.imageUrl.length > 3) {
                     return (
                         <div className="col-12" key={item.itemId}>
@@ -51,11 +51,11 @@ function AdminFeatured() {
                             </Card.Body>
                         </Card>
                         <center>
-                            <Link to={`/admin/featured/edit/${item.itemId}`}>
+                            <Link to={`/admin/store/edit/${item.itemId}`}>
                             <Button className="fbtn">Edit</Button>
                             </Link>
                             <Button onClick={() => {
-                                deleteItem(item.itemId).then(() => {
+                                deleteStoreItem(item.itemId).then(() => {
                                     window.location.reload()
                                 })
                             }} className="fbtn" variant="danger">Delete</Button>
@@ -96,7 +96,7 @@ function AdminFeatured() {
                 </Row>
                 <Row>
                     <center>
-                        <Link to={`/admin/featured/add`}>
+                        <Link to={`/admin/store/add`}>
                             <Button>
                                 Add Item
                             </Button>
@@ -107,4 +107,4 @@ function AdminFeatured() {
         </>
     )
 }
-export default AdminFeatured
+export default AdminStore

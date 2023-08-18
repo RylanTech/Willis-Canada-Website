@@ -15,6 +15,15 @@ import PostAdd from "./Components/PostAdd";
 import AdminSlides from "./Pages/Admin/AdminSlides";
 import SlideEdit from "./Components/SlideEdit";
 import SlideAdd from "./Components/SlideAdd";
+import AdminPhotos from "./Pages/Admin/AdminPhotos";
+import PhotosEdit from "./Components/PhotosEdit";
+import PhotosAdd from "./Components/PhotosAdd";
+import AdminEvent from "./Pages/Admin/AdminEvent";
+import EventEdit from "./Components/EventEdit";
+import EventAdd from "./Components/EventAdd";
+import AdminStore from "./Pages/Admin/AdminStore";
+import StoreItemEdit from "./Components/StoreItemEdit";
+import StoreItemAdd from "./Components/StoreItemAdd";
 
 function App() {
   return (
@@ -26,16 +35,32 @@ function App() {
         <Route path="/schedule" element={<Schedule/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/store" element={<Store/>}/>
+
         <Route path="/admin" element={<AdminLogin/>}/>
+
         <Route path="/admin/featured" element={<AdminFeatured/>}/>
         <Route path="/admin/featured/edit/:itemId" element={<FeaturedEdit/>}/>
         <Route path="/admin/featured/add" element={<FeaturedAdd/>}/>
+
         <Route path="/admin/posts" element={<AdminPost/>}/>
         <Route path="/admin/posts/edit/:postId" element={<PostEdit/>}/>
         <Route path="/admin/posts/add" element={<PostAdd/>}/>
+
         <Route path="/admin/slides" element={<AdminSlides/>}/>
         <Route path="/admin/slides/edit/:slideId" element={<SlideEdit/>}/>
         <Route path="/admin/slides/add" element={<SlideAdd/>}/>
+        
+        <Route path="/admin/photos" element={<AdminPhotos/>}/>
+        <Route path="/admin/photos/edit/:photosId" element={<PhotosEdit/>}/>
+        <Route path="/admin/photos/add" element={<PhotosAdd/>}/>
+
+        <Route path="/admin/events" element={<AdminEvent/>}/>
+        <Route path="/admin/events/edit/:eventId" element={<EventEdit/>}/>
+        <Route path="/admin/events/add" element={<EventAdd/>}/>
+
+        <Route path="/admin/store" element={<AdminStore/>}/>
+        <Route path="/admin/store/edit/:storeitemId" element={<StoreItemEdit/>}/>
+        <Route path="/admin/store/add" element={<StoreItemAdd/>}/>
       </Routes>
     </BrowserRouter>
   );

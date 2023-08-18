@@ -1,18 +1,17 @@
-import { Container, Row } from "react-bootstrap"
-import NavigationBar from "../Components/NavigationBar"
-import Footer from "../Components/Footer"
-import React, { useContext, useEffect, useState } from 'react';
-import { EventContext } from "../Context/eventContext";
-import { UserContext } from "../Context/userContext";
-import { useNavigate } from "react-router-dom";
+import { Button, Card, Container, Row } from "react-bootstrap"
+import AdminNavigationBar from "../../Components/AdminNavigationBar"
+import { useContext, useEffect, useState } from "react"
+import { UserContext } from "../../Context/userContext"
+import { Link, useNavigate } from "react-router-dom"
+import { EventContext } from "../../Context/eventContext"
 
-function Schedule() {
-    const { getEvents } = useContext(EventContext)
+function AdminEvent() {
     const { verify } = useContext(UserContext)
+    const { getEvents, deleteEvent } = useContext(EventContext)
 
     const [events, setEvents] = useState()
 
-    let navigate = useNavigate()
+    let navigate = useNavigate();
 
     useEffect(() => {
         async function verifing() {
@@ -28,11 +27,11 @@ function Schedule() {
 
     function formatDateToWord(date) {
         const months = [
-            "January", "February", "March", "April",
-            "May", "June", "July", "August",
-            "September", "October", "November", "December"
+          "January", "February", "March", "April",
+          "May", "June", "July", "August",
+          "September", "October", "November", "December"
         ];
-
+      
         const day = date.getDate();
         const month = months[date.getMonth()];
         const year = date.getFullYear();
@@ -40,24 +39,24 @@ function Schedule() {
         const minute = date.getMinutes();
         const amPm = hour >= 12 ? 'pm' : 'am';
         const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
-
+      
         let daySuffix;
         if (day === 1 || day === 21 || day === 31) {
-            daySuffix = "st";
+          daySuffix = "st";
         } else if (day === 2 || day === 22) {
-            daySuffix = "nd";
+          daySuffix = "nd";
         } else if (day === 3 || day === 23) {
-            daySuffix = "rd";
+          daySuffix = "rd";
         } else {
-            daySuffix = "th";
+          daySuffix = "th";
         }
-
+      
         const formattedDate = `${month} ${day}${daySuffix} at ${formattedHour}:${minute < 10 ? '0' : ''}${minute}${amPm}`;
-
+      
         return formattedDate;
-    }
+      }
 
-    function EventList() {
+    function postingEvent() {
         if (events) {
             return events.map((event) => {
                 let date = formatDateToWord(new Date(event.date))
@@ -69,7 +68,7 @@ function Schedule() {
                                 <h5>{event.title}</h5>
                                 <p>
                                     {date}
-                                    <br />
+                                    <br/>
                                     Location: {event.location}
                                 </p>
                                 <p>
@@ -78,40 +77,45 @@ function Schedule() {
                             </div>
                         </div>
                         <div className="col-xl-2" />
+                        <center>
+                            <Link to={`/admin/events/edit/${event.eventId}`}>
+                                <Button className="fbtn">Edit</Button>
+                            </Link>
+                            <Button onClick={() => {
+                                deleteEvent(event.eventId).then(() => {
+                                    window.location.reload()
+                                })
+                            }} className="fbtn" variant="danger">Delete</Button>
+                        </center>
+                        <hr />
                     </>
                 )
             })
-        } else {
-            return (
-                <center>
-                    <div className="col-xl-2" />
-                    <div className="col-12 col-xl-8">
-                        <div className="event">
-                            <h5>No events right now</h5>
-                        </div>
-                    </div>
-                </center>
-            )
         }
     }
 
     return (
         <>
-            <NavigationBar />
+            <AdminNavigationBar />
             <Container>
                 <Row>
                     <center>
-                        <div className="eventHeaderOver">
-                            <h2 className="eventHeader">
-                                Events
-                            </h2>
+                        <div className="col-12 col-md-8">
+                            {postingEvent()}
                         </div>
                     </center>
-                    {EventList()}
+                </Row>
+                <Row>
+                    <center>
+                        <Link to={`/admin/events/add`}>
+                            <Button>
+                                Add Event
+                            </Button>
+                        </Link>
+                    </center>
                 </Row>
             </Container>
-            <Footer />
         </>
     )
 }
-export default Schedule
+export default AdminEvent

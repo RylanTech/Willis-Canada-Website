@@ -1,44 +1,44 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Container, Form, Row } from "react-bootstrap"
-import { PostContext } from "../Context/postContext"
 import AdminNavigationBar from "./AdminNavigationBar"
+import { PhotoContext } from "../Context/photoContext"
 
-function PostEdit() {
+function PhotosEdit() {
     let params = useParams()
     let navigate = useNavigate()
-    let [post, setPost] = useState({
-        title: "",
-        message: "",
-        postId: params.postId
+    let [photo, setPhoto] = useState({
+        imageUrl: "",
+        photosId: params.photosId
     })
 
-    let { title, message, postId } = post
+    let { imageUrl, photosId } = photo
 
-    const { getPost, editPost } = useContext(PostContext)
+    const { getPhoto, editPhoto } = useContext(PhotoContext)
 
     useEffect(() => {
-        if (postId === undefined) return
+        if (photosId === undefined) return
         async function fetch() {
-            await getPost(postId)
-                .then((post) => {
-                    setPost(post)
+            await getPhoto(photosId)
+                .then((photo) => {
+                    setPhoto(photo)
                 })
         }
         fetch()
-    }, [postId])
+    }, [photosId])
 
     function handleChange(event) {
-        setPost((preValue) => {
+        console.log(photo)
+        setPhoto((preValue) => {
             return { ...preValue, [event.target.name]: event.target.value }
         })
-        console.log(event.target.value)
     }
 
     function handleSubmit(event) {
         event.preventDefault()
-        editPost(post).then(() =>
-          navigate(`/admin/posts`)
+        console.log(photo)
+        editPhoto(photo).then(() =>
+          navigate(`/admin/photos`)
         )
     }
 
@@ -51,13 +51,8 @@ function PostEdit() {
                     <div className="col-12 col-lg-8">
                         <Form onSubmit={handleSubmit} style={{ color: "white", margin: "20px" }}>
                             <Form.Group style={{ margin: "20px" }}>
-                                <Form.Label>Title</Form.Label>
-                                <Form.Control type="text" name="title" value={title} onChange={handleChange} />
-                            </Form.Group>
-                            <Form.Group style={{ margin: "20px" }}>
-                                <Form.Label>Message</Form.Label>
-                                <textarea className="itemTA col-12" type="text" name="message" value={message} onChange={handleChange} />
-                                {/* <Form.Control type="text" name="message" value={message} onChange={handleChange} /> */}
+                                <Form.Label>ImageUrl</Form.Label>
+                                <Form.Control type="text" name="imageUrl" value={imageUrl} onChange={handleChange} />
                             </Form.Group>
                             <Button type="submit">Edit</Button>
                         </Form>
@@ -67,4 +62,4 @@ function PostEdit() {
         </>
     )
 }
-export default PostEdit
+export default PhotosEdit

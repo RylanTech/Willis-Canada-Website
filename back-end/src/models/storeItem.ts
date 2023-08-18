@@ -1,6 +1,6 @@
 import { DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from "sequelize";
 
-export class item extends Model<InferAttributes<item>, InferCreationAttributes<item>>{
+export class storeItem extends Model<InferAttributes<storeItem>, InferCreationAttributes<storeItem>>{
     declare itemId: number;
     declare title: string
     declare link: string;
@@ -9,8 +9,8 @@ export class item extends Model<InferAttributes<item>, InferCreationAttributes<i
     declare price: string;
 }
 
-export function itemFactory(sequelize: Sequelize) {
-    item.init({
+export function storeItemFactory(sequelize: Sequelize) {
+    storeItem.init({
         itemId: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -40,7 +40,7 @@ export function itemFactory(sequelize: Sequelize) {
     },
         {
             freezeTableName: true,
-            tableName: 'items',
+            tableName: 'storeItems',
             sequelize,
             collate: 'utf8_general_ci',
         })

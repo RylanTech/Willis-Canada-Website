@@ -14,7 +14,6 @@ function FeaturedEdit() {
         price: "",
         itemId: params.itemId,
         imageUrl: "",
-        releaseDate: "",
         link: ""
     })
 

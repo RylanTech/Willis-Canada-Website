@@ -1,36 +1,36 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { ItemContext } from "../Context/itemContext"
-import NavigationBar from "./NavigationBar"
 import { Button, Container, Form, Row } from "react-bootstrap"
 import AdminNavigationBar from "./AdminNavigationBar"
+import { StoreItemContext } from "../Context/storeItemContext"
 
-function FeaturedAdd() {
+function StoreItemAdd() {
     let params = useParams()
     let navigate = useNavigate()
     let [item, setItem] = useState({
         title: "",
         description: "",
         price: "",
-        itemId: params.itemId,
+        storeitemId: params.storeitemId,
         imageUrl: "",
         link: ""
     })
 
-    let { title, description, price, itemId, imageUrl, releaseDate, link } = item
+    let { title, description, price, storeitemId, imageUrl, link } = item
 
-    const { getItem, addItem } = useContext(ItemContext)
+    const { addStoreItem } = useContext(StoreItemContext)
 
     // useEffect(() => {
-    //     if (itemId === undefined) return
+    //     if (storeitemId === undefined) return
     //     async function fetch() {
-    //         await getItem(params.itemId)
+    //         await getStoreItem(params.storeitemId)
     //             .then((item) => {
     //                 setItem(item)
     //             })
     //     }
     //     fetch()
-    // }, [itemId])
+    // }, [storeitemId])
 
     function handleChange(event) {
         setItem((preValue) => {
@@ -41,8 +41,8 @@ function FeaturedAdd() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        addItem(item).then(() =>
-          navigate(`/admin/featured`)
+        addStoreItem(item).then(() =>
+          navigate(`/admin/store`)
         )
     }
 
@@ -75,7 +75,7 @@ function FeaturedAdd() {
                                 <Form.Control type="text" name="imageUrl" value={imageUrl} onChange={handleChange} />
                             </Form.Group>
                             <Form.Group style={{ margin: "20px" }}>
-                                <Form.Label>Link to buy</Form.Label>
+                                <Form.Label>Link</Form.Label>
                                 <Form.Control type="text" name="link" value={link} onChange={handleChange} />
                             </Form.Group>
                             <Form.Group style={{ margin: "20px" }}>
@@ -92,4 +92,4 @@ function FeaturedAdd() {
         </>
     )
 }
-export default FeaturedAdd
+export default StoreItemAdd

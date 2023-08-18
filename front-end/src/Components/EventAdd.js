@@ -1,49 +1,61 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { ItemContext } from "../Context/itemContext"
-import NavigationBar from "./NavigationBar"
 import { Button, Container, Form, Row } from "react-bootstrap"
+import { EventContext } from "../Context/eventContext"
 import AdminNavigationBar from "./AdminNavigationBar"
 
-function FeaturedAdd() {
+function EventAdd() {
     let params = useParams()
     let navigate = useNavigate()
-    let [item, setItem] = useState({
+    let [evnt, setEvnt] = useState({
         title: "",
+        date: "",
+        location: "",
         description: "",
-        price: "",
-        itemId: params.itemId,
-        imageUrl: "",
-        link: ""
+        eventId: params.eventId
     })
 
-    let { title, description, price, itemId, imageUrl, releaseDate, link } = item
+    let { title, date, location, description, eventId } = evnt
 
-    const { getItem, addItem } = useContext(ItemContext)
+    const { addEvent } = useContext(EventContext)
 
     // useEffect(() => {
-    //     if (itemId === undefined) return
+    //     if (eventId === undefined) return
     //     async function fetch() {
-    //         await getItem(params.itemId)
-    //             .then((item) => {
-    //                 setItem(item)
+    //         await getEvent(eventId)
+    //             .then((event) => {
+    //                 // event.date = new Date(event.date).toISOString()
+    //                 setEvnt(event)
     //             })
     //     }
     //     fetch()
-    // }, [itemId])
+    // }, [eventId])
 
     function handleChange(event) {
-        setItem((preValue) => {
+        setEvnt((preValue) => {
             return { ...preValue, [event.target.name]: event.target.value }
         })
-        console.log(event.target.value)
     }
 
     function handleSubmit(event) {
-        event.preventDefault()
-        addItem(item).then(() =>
-          navigate(`/admin/featured`)
-        )
+        event.preventDefault();
+      
+        // Convert the local time back to UTC before submission
+        const utcDate = convertToISOString(new Date(evnt.date));
+      
+        addEvent({ ...evnt, date: utcDate }).then(() =>
+          navigate(`/admin/events`)
+        );
+      }
+
+    function convertToISOString(localDate) {
+        const offset = localDate.getTimezoneOffset() * 60000; // Offset in milliseconds
+        const utcTime = localDate.getTime() - offset;
+        return new Date(utcTime).toISOString().substr(0, 16);
+    }
+
+    function convertToLocalDate(utcString) {
+        return new Date(utcString);
     }
 
     return (
@@ -59,30 +71,24 @@ function FeaturedAdd() {
                                 <Form.Control type="text" name="title" value={title} onChange={handleChange} />
                             </Form.Group>
                             <Form.Group style={{ margin: "20px" }}>
-                                <Form.Label>Price</Form.Label>
-                                <Row>
-                                    <div className="col-1 cashs">
-                                        $
-                                    </div>
-                                    <div className="col-11">
-                                        <Form.Control type="number" name="price" value={price} onChange={handleChange} />
+                                <Form.Label>Location</Form.Label>
+                                <Form.Control type="text" name="location" value={location} onChange={handleChange} />
+                            </Form.Group>
 
-                                    </div>
-                                </Row>
-                            </Form.Group>
                             <Form.Group style={{ margin: "20px" }}>
-                                <Form.Label>imageUrl</Form.Label>
-                                <Form.Control type="text" name="imageUrl" value={imageUrl} onChange={handleChange} />
+                                <Form.Label>Date</Form.Label>
+                                <Form.Control
+                                    type="datetime-local"
+                                    name="date"
+                                    value={date ? convertToISOString(convertToLocalDate(date)) : ""}
+                                    onChange={handleChange}
+                                />
                             </Form.Group>
-                            <Form.Group style={{ margin: "20px" }}>
-                                <Form.Label>Link to buy</Form.Label>
-                                <Form.Control type="text" name="link" value={link} onChange={handleChange} />
-                            </Form.Group>
+
                             <Form.Group style={{ margin: "20px" }}>
                                 <Form.Label>Description</Form.Label>
-                                <br />
                                 <textarea className="itemTA col-12" type="text" name="description" value={description} onChange={handleChange} />
-                                {/* <Form.Control type="text" name="description" value={description} onChange={handleChange} /> */}
+                                {/* <Form.Control type="text" name="message" value={message} onChange={handleChange} /> */}
                             </Form.Group>
                             <Button type="submit">Add</Button>
                         </Form>
@@ -92,4 +98,4 @@ function FeaturedAdd() {
         </>
     )
 }
-export default FeaturedAdd
+export default EventAdd

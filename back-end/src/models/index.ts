@@ -6,6 +6,7 @@ import { eventFactory } from "./events";
 import { postFactory } from "./posts";
 import { photosFactory } from "./photos";
 import { slideFactory } from "./slides";
+import { storeItemFactory } from "./storeItem";
 
 // const dbName = process.env.DB_NAME ?? '';
 // const username = process.env.DB_USER ?? '';
@@ -27,6 +28,8 @@ eventFactory(sequelize)
 postFactory(sequelize)
 photosFactory(sequelize)
 slideFactory(sequelize)
+storeItemFactory(sequelize)
+
 
 
 export const db = sequelize;

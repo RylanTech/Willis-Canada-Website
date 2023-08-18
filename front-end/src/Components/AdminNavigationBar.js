@@ -18,7 +18,7 @@ function AdminNavigationBar() {
                                 <Link className="nav-link" to="/admin/posts">Posts</Link>
                                 <Link className="nav-link" to="/admin/slides">Slides</Link>
                                 <Link className="nav-link" to="/admin/photos">Photos</Link>
-                                <Link className="nav-link" to="/admin/schedule">Schedule</Link>
+                                <Link className="nav-link" to="/admin/events">Schedule</Link>
                                 <Link className="nav-link" to="/admin/store">Store</Link>
                                 <Link className="nav-link" to="/">Back to Home</Link>
                             </Nav>
