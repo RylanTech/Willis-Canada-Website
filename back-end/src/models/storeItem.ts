@@ -34,7 +34,7 @@ export function storeItemFactory(sequelize: Sequelize) {
             allowNull: false
         },
         price: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false
         }
     },

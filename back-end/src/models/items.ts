@@ -30,7 +30,7 @@ export function itemFactory(sequelize: Sequelize) {
             allowNull: true
         },
         description: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false
         },
         price: {

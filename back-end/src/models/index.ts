@@ -7,14 +7,14 @@ import { postFactory } from "./posts";
 import { photosFactory } from "./photos";
 import { slideFactory } from "./slides";
 import { storeItemFactory } from "./storeItem";
+import { unApprovedFactory } from "./unApproved";
+import { ApprovedFactory } from "./Approved";
+import 'dotenv/config';
+import { AudioFactory } from "./Audio";
 
-// const dbName = process.env.DB_NAME ?? '';
-// const username = process.env.DB_USER ?? '';
-// const password = process.env.DB_PASS ?? '';
-
-const dbName = "williscanada"
-const username = "root"
-const password = "0624"
+const dbName = process.env.DB_NAME ?? '';
+const username = process.env.DB_USER ?? '';
+const password = process.env.DB_PASS ?? '';
 
 const sequelize = new Sequelize(dbName, username, password, {
     host: '127.0.0.1',
@@ -29,6 +29,9 @@ postFactory(sequelize)
 photosFactory(sequelize)
 slideFactory(sequelize)
 storeItemFactory(sequelize)
+unApprovedFactory(sequelize)
+ApprovedFactory(sequelize)
+AudioFactory(sequelize)
 
 
 

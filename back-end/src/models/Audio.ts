@@ -1,19 +1,23 @@
 import { DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from "sequelize";
+import { storeItem } from "./storeItem";
 
-export class events extends Model<InferAttributes<events>, InferCreationAttributes<events>>{
-    declare eventId: number;
+export class Audio extends Model<InferAttributes<Audio>, InferCreationAttributes<Audio>>{
+    declare audioId: number;
+    declare url: string;
     declare title: string;
-    declare date: Date;
-    declare location: string;
-    declare description: string;
+    declare date: string;
 }
 
-export function eventFactory(sequelize: Sequelize) {
-    events.init({
-        eventId: {
+export function AudioFactory(sequelize: Sequelize) {
+    Audio.init({
+        audioId: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
+            allowNull: false
+        },
+        url: {
+            type: DataTypes.STRING,
             allowNull: false
         },
         title: {
@@ -21,21 +25,13 @@ export function eventFactory(sequelize: Sequelize) {
             allowNull: false
         },
         date: {
-            type: DataTypes.DATE,
-            allowNull: false
-        },
-        location: {
             type: DataTypes.STRING,
-            allowNull: false
-        },
-        description: {
-            type: DataTypes.TEXT,
             allowNull: false
         }
     },
         {
             freezeTableName: true,
-            tableName: 'events',
+            tableName: 'Audio',
             sequelize,
             collate: 'utf8_general_ci',
         })

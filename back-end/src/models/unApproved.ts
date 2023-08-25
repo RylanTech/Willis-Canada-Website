@@ -1,41 +1,37 @@
 import { DataTypes, InferAttributes, InferCreationAttributes, Model, Sequelize } from "sequelize";
+import { storeItem } from "./storeItem";
 
-export class events extends Model<InferAttributes<events>, InferCreationAttributes<events>>{
-    declare eventId: number;
-    declare title: string;
-    declare date: Date;
-    declare location: string;
-    declare description: string;
+export class unApproved extends Model<InferAttributes<unApproved>, InferCreationAttributes<unApproved>>{
+    declare unApprovedId: number;
+    declare name: string;
+    declare email: storeItem;
+    declare message: string;
 }
 
-export function eventFactory(sequelize: Sequelize) {
-    events.init({
-        eventId: {
+export function unApprovedFactory(sequelize: Sequelize) {
+    unApproved.init({
+        unApprovedId: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
             allowNull: false
         },
-        title: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        date: {
-            type: DataTypes.DATE,
-            allowNull: false
-        },
-        location: {
+        email: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        description: {
+        message: {
             type: DataTypes.TEXT,
             allowNull: false
         }
     },
         {
             freezeTableName: true,
-            tableName: 'events',
+            tableName: 'unApproved',
             sequelize,
             collate: 'utf8_general_ci',
         })
