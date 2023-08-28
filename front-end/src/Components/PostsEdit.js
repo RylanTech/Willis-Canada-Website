@@ -32,7 +32,6 @@ function PostEdit() {
         setPost((preValue) => {
             return { ...preValue, [event.target.name]: event.target.value }
         })
-        console.log(event.target.value)
     }
 
     function handleSubmit(event) {

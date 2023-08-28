@@ -10,7 +10,7 @@ function Schedule() {
     const { getEvents } = useContext(EventContext)
     const { verify } = useContext(UserContext)
 
-    const [events, setEvents] = useState()
+    const [events, setEvents] = useState("")
 
     let navigate = useNavigate()
 
@@ -58,7 +58,7 @@ function Schedule() {
     }
 
     function EventList() {
-        if (events) {
+        if (events.length) {
             return events.map((event) => {
                 let date = formatDateToWord(new Date(event.date))
                 return (

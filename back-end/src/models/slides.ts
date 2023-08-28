@@ -4,6 +4,7 @@ export class slides extends Model<InferAttributes<slides>, InferCreationAttribut
     declare slideId: number;
     declare imageUrl: string;
     declare message: string;
+    declare url: string;
 }
 
 export function slideFactory(sequelize: Sequelize) {
@@ -19,6 +20,10 @@ export function slideFactory(sequelize: Sequelize) {
             allowNull: false
         },
         message: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        url: {
             type: DataTypes.STRING,
             allowNull: true
         }

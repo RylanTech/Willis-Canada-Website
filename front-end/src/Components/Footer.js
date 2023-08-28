@@ -9,8 +9,8 @@ function Footer() {
                         Website made by Rylan Workman
                     </div>
                     <div className='footerL'>
-                        Email: email@email.com<br />
-                        or call {`(111)`}-111-1111
+                        Email: willisc@mindspring.com<br />
+                        or call (804)-740-4048
                     </div>
                 </Row>
             </Container>

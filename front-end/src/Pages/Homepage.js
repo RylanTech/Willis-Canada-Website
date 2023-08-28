@@ -7,9 +7,9 @@ import { PostContext } from "../Context/postContext"
 import { SlideContext } from "../Context/slideContext"
 
 function Homepage() {
-    const [items, setItems] = useState()
-    const [posts, setPosts] = useState()
-    const [slides, setSlides] = useState()
+    const [items, setItems] = useState("")
+    const [posts, setPosts] = useState("")
+    const [slides, setSlides] = useState("")
 
     const { getItems } = useContext(ItemContext)
     const { getPosts } = useContext(PostContext)
@@ -30,10 +30,10 @@ function Homepage() {
     }, [])
 
     function carouselSlide() {
-        if (slides) {
+        if (slides.length) {
             return slides.map((slide) => {
                 return (
-                    <Carousel.Item>
+                    <Carousel.Item key={slide.slideId}>
                         <img className="caraImg" src={slide.imageUrl} alt="Willis Canada" />
                         <Carousel.Caption>
                             {slide.message}
@@ -41,14 +41,20 @@ function Homepage() {
                     </Carousel.Item>
                 )
             })
+        } else {
+            return (
+                <center>
+                    No Slides
+                </center>
+            )
         }
     }
 
     function postingPosts() {
-        if (posts) {
+        if (posts.length) {
             return posts.map((post) => {
                 return (
-                    <Card className="infoCard">
+                    <Card className="infoCard" key={post.postId}>
                         <Card.Header as="h5">{post.title}</Card.Header>
                         <Card.Body>
                             <Card.Text>
@@ -58,15 +64,21 @@ function Homepage() {
                     </Card>
                 )
             })
+        } else {
+            return (
+                <Card className="infoCard">
+                    <Card.Header as="h5">No Posts</Card.Header>
+                </Card>
+            )
         }
     }
 
     function shoppingItems() {
-        if (items) {
+        if (items.length) {
             return items.map((item) => {
                 if (item.imageUrl.length > 3) {
                     return (
-                        <Card className="HomeShopCard">
+                        <Card className="HomeShopCard" key={item.itemId}>
                             <Card.Header>
                                 <h5>{item.title}</h5>
                                 {item.price}
@@ -86,7 +98,7 @@ function Homepage() {
                     )
                 } else {
                     return (
-                        <Card className="HomeShopCard">
+                        <Card className="HomeShopCard" key={item.itemId}>
                             <Card.Header>
                                 <h5>{item.title}</h5>
                                 {item.price}
@@ -103,9 +115,9 @@ function Homepage() {
             })
         } else {
             return (
-                <div>
+                <center>
                     No Featured Items
-                </div>
+                </center>
             )
         }
     }
@@ -118,7 +130,17 @@ function Homepage() {
                         <Carousel className="col-12">
                             {carouselSlide()}
                         </Carousel>
+                        <center>
+                        <br/>
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input name="cmd" type="hidden" value="_s-xclick" />
+                            <input name="hosted_button_id" type="hidden" value="QNNKVRYK3UXQ8" />
+                            <input alt="PayPal - The safer, easier way to pay online!" border="0" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" type="image" />
+                            <img alt="" border="0" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" />
+                        </form>
+                        </center>
                         {postingPosts()}
+
                     </div>
                     <div className="col-12 col-md-4">
                         <div className="featured">

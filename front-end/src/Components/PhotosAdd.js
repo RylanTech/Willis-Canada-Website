@@ -28,7 +28,6 @@ function PhotosAdd() {
     // }, [photosId])
 
     function handleChange(event) {
-        console.log(photo)
         setPhoto((preValue) => {
             return { ...preValue, [event.target.name]: event.target.value }
         })
@@ -36,7 +35,6 @@ function PhotosAdd() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        console.log(photo)
         addPhoto(photo).then(() =>
           navigate(`/admin/photos`)
         )

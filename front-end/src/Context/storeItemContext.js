@@ -8,7 +8,7 @@ export const StoreItemProvider = (props) => {
 
     function getStoreItems() {
 
-        return axios.get(baseUrl + "api/item/getall")
+        return axios.get(baseUrl + "api/storeitem/getall")
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }
@@ -17,7 +17,7 @@ export const StoreItemProvider = (props) => {
 
     function getStoreItem(itemId) {
 
-        return axios.get(baseUrl + `api/item/${itemId}`)
+        return axios.get(baseUrl + `api/storeitem/${itemId}`)
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }
@@ -29,11 +29,7 @@ export const StoreItemProvider = (props) => {
             Authorization: `Bearer ${localStorage.getItem('WCLogin')}`
         };
 
-        if (item.releaseDate === "") {
-            delete item.releaseDate
-        }
-
-        return axios.post(baseUrl + "api/item/", item, {headers: myHeaders})
+        return axios.post(baseUrl + "api/storeitem/", item, {headers: myHeaders})
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }
@@ -45,7 +41,7 @@ export const StoreItemProvider = (props) => {
             Authorization: `Bearer ${localStorage.getItem('WCLogin')}`
         };
 
-        return axios.put(baseUrl + `api/item/${item.itemId}`, item, {headers: myHeaders})
+        return axios.put(baseUrl + `api/storeitem/${item.itemId}`, item, {headers: myHeaders})
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }
@@ -57,7 +53,7 @@ export const StoreItemProvider = (props) => {
             Authorization: `Bearer ${localStorage.getItem('WCLogin')}`
         };
 
-        return axios.delete(baseUrl + `api/item/${itemId}`, {headers: myHeaders})
+        return axios.delete(baseUrl + `api/storeitem/${itemId}`, {headers: myHeaders})
             .then(response => {
                 return new Promise(resolve => resolve(response.data));
             }

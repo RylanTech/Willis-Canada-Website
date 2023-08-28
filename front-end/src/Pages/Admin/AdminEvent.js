@@ -9,7 +9,7 @@ function AdminEvent() {
     const { verify } = useContext(UserContext)
     const { getEvents, deleteEvent } = useContext(EventContext)
 
-    const [events, setEvents] = useState()
+    const [events, setEvents] = useState("")
 
     let navigate = useNavigate();
 
@@ -57,11 +57,11 @@ function AdminEvent() {
       }
 
     function postingEvent() {
-        if (events) {
+        if (events.length) {
             return events.map((event) => {
                 let date = formatDateToWord(new Date(event.date))
                 return (
-                    <>
+                    <div key={event.eventId}>
                         <div className="col-xl-2" />
                         <div className="event col-12 col-xl-8">
                             <div className="textInEvent">
@@ -88,9 +88,16 @@ function AdminEvent() {
                             }} className="fbtn" variant="danger">Delete</Button>
                         </center>
                         <hr />
-                    </>
+                    </div>
                 )
             })
+        } else {
+            return (
+                <center>
+                    <h5>No Events</h5>
+                    <hr/>
+                </center>
+            )
         }
     }
 

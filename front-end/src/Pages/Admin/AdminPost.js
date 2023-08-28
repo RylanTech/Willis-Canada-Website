@@ -9,7 +9,7 @@ function AdminPost() {
     const { verify } = useContext(UserContext)
     const { getPosts, deletePost } = useContext(PostContext)
 
-    const [posts, setPosts] = useState()
+    const [posts, setPosts] = useState("")
 
     let navigate = useNavigate();
 
@@ -26,7 +26,7 @@ function AdminPost() {
     }, [])
 
     function postingPosts() {
-        if (posts) {
+        if (posts.length) {
             return posts.map((post) => {
                 return (
                     <div key={post.postId}>
@@ -52,6 +52,13 @@ function AdminPost() {
                     </div>
                 )
             })
+        } else {
+            return (
+                <center>
+                    <h5>No Posts</h5>
+                    <hr/>
+                </center>
+            )
         }
     }
 

@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { PhotoContext } from "../../Context/photoContext"
 
 function AdminPhotos() {
-    const [photos, setPhotos] = useState()
+    const [photos, setPhotos] = useState("")
 
     const { verify } = useContext(UserContext)
     const { getPhotos, deletePhoto } = useContext(PhotoContext)
@@ -27,7 +27,7 @@ function AdminPhotos() {
     }, [])
 
     function carouselPhotos() {
-        if (photos) {
+        if (photos.length) {
             return photos.map((photo) => {
                 return (
                     <div key={photo.photosId}>
@@ -52,6 +52,13 @@ function AdminPhotos() {
                     </div>
                 )
             })
+        } else {
+            return (
+                <center>
+                    <h5>No Photos</h5>
+                    <hr/>
+                </center>
+            )
         }
     }
 
@@ -66,7 +73,7 @@ function AdminPhotos() {
                     <center>
                         <Link to={`/admin/photos/add`}>
                             <Button>
-                                Add Slide
+                                Add Photo
                             </Button>
                         </Link>
                     </center>

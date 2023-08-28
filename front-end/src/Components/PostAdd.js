@@ -14,7 +14,7 @@ function PostAdd() {
         postId: params.postId
     })
 
-    let { title, message, postId } = post
+    let { title, message } = post
 
     const { addPost } = useContext(PostContext)
 
@@ -33,7 +33,6 @@ function PostAdd() {
         setPost((preValue) => {
             return { ...preValue, [event.target.name]: event.target.value }
         })
-        console.log(event.target.value)
     }
 
     function handleSubmit(event) {

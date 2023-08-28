@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { SlideContext } from "../../Context/slideContext"
 
 function AdminSlides() {
-    const [slides, setSlides] = useState()
+    const [slides, setSlides] = useState("")
 
     const { verify } = useContext(UserContext)
     const { getSlides, deleteSlide } = useContext(SlideContext)
@@ -27,7 +27,7 @@ function AdminSlides() {
     }, [])
 
     function carouselSlide() {
-        if (slides) {
+        if (slides.length) {
             return slides.map((slide) => {
                 return (
                     <div key={slide.slideId}>
@@ -54,6 +54,13 @@ function AdminSlides() {
                     </div>
                 )
             })
+        } else {
+            return (
+                <center>
+                    <h5>No Slides</h5>
+                    <hr/>
+                </center>
+            )
         }
     }
 

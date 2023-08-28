@@ -32,7 +32,6 @@ function SlideAdd() {
         setSlide((preValue) => {
             return { ...preValue, [event.target.name]: event.target.value }
         })
-        console.log(event.target.value)
     }
 
     function handleSubmit(event) {
@@ -56,7 +55,7 @@ function SlideAdd() {
                             </Form.Group>
                             <Form.Group style={{ margin: "20px" }}>
                                 <Form.Label>Message</Form.Label>
-                                <textarea className="itemTA col-12" type="text" name="message" value={message} onChange={handleChange} />
+                                <textarea placeholder="Not required" className="itemTA col-12" type="text" name="message" value={message} onChange={handleChange} />
                                 {/* <Form.Control type="text" name="message" value={message} onChange={handleChange} /> */}
                             </Form.Group>
                             <Button type="submit">Add</Button>

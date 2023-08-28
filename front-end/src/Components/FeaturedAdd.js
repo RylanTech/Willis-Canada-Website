@@ -36,7 +36,6 @@ function FeaturedAdd() {
         setItem((preValue) => {
             return { ...preValue, [event.target.name]: event.target.value }
         })
-        console.log(event.target.value)
     }
 
     function handleSubmit(event) {
@@ -75,7 +74,7 @@ function FeaturedAdd() {
                                 <Form.Control type="text" name="imageUrl" value={imageUrl} onChange={handleChange} />
                             </Form.Group>
                             <Form.Group style={{ margin: "20px" }}>
-                                <Form.Label>Link to buy</Form.Label>
+                                <Form.Label>Link</Form.Label>
                                 <Form.Control type="text" name="link" value={link} onChange={handleChange} />
                             </Form.Group>
                             <Form.Group style={{ margin: "20px" }}>

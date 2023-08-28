@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { ItemContext } from "../Context/itemContext"
 import { Button, Container, Form, Row } from "react-bootstrap"
 import AdminNavigationBar from "./AdminNavigationBar"
 import { StoreItemContext } from "../Context/storeItemContext"
@@ -36,7 +35,6 @@ function StoreItemEdit() {
         setItem((preValue) => {
             return { ...preValue, [event.target.name]: event.target.value }
         })
-        console.log(event.target.value)
     }
 
     function handleSubmit(event) {

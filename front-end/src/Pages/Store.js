@@ -1,59 +1,73 @@
 import { Button, Card, Container, Row } from "react-bootstrap"
 import Footer from "../Components/Footer"
 import NavigationBar from "../Components/NavigationBar"
+import { StoreItemContext } from "../Context/storeItemContext"
+import { useContext, useEffect, useState } from "react"
 
 function Store() {
-    let items = [
-        {
-            title: "Album",
-            link: "https://google.com",
-            ImageUrl: "https://images.unsplash.com/photo-1487088678257-3a541e6e3922?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-            releaseDate: new Date().toString(),
-            description: "description",
-            price: "$20"
-        },
-        {
-            title: "Album",
-            link: "https://google.com",
-            ImageUrl: "https://images.unsplash.com/photo-1487088678257-3a541e6e3922?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-            releaseDate: new Date().toString(),
-            description: "description",
-            price: "$20"
-        },
-        {
-            title: "Album",
-            link: "https://google.com",
-            ImageUrl: "https://images.unsplash.com/photo-1487088678257-3a541e6e3922?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-            releaseDate: new Date().toString(),
-            description: "description",
-            price: "$20"
-        }
-    ]
+    const [storeItems, setStoreItems] = useState("")
+    const { getStoreItems } = useContext(StoreItemContext)
 
-    function storeItems() {
-        return items.map((item) => {
+    useEffect(() => {
+        async function verifing() {
+            let itms = await getStoreItems()
+
+            setStoreItems(itms)
+        }
+        verifing()
+    }, [])
+
+    function mappingStoreItems() {
+        if (storeItems.length) {
+            return storeItems.map((item) => {
+                if (item.imageUrl.length > 3) {
+                    return (
+                        <div className="col-6" key={item.itemId}>
+                            <Card className="HomeShopCard">
+                                <Card.Header>
+                                    <h5>{item.title}</h5>
+                                    ${item.price}
+                                </Card.Header>
+                                <Card.Header>
+                                    <center>
+                                        <img className="HomeLefthandCardImg" src={item.imageUrl} />
+                                    </center>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Card.Text>
+                                        {item.description}
+                                    </Card.Text>
+                                    <Button target="_blank" href={item.link} className="featuredBtn">Buy</Button>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                    )
+                } else {
+                    return (
+                        <div className="col-6" key={item.itemId}>
+                            <Card className="HomeShopCard" key={item.itemId}>
+                                <Card.Header>
+                                    <h5>{item.title}</h5>
+                                    {item.price}
+                                </Card.Header>
+                                <Card.Body>
+                                    <Card.Text>
+                                        {item.description}
+                                    </Card.Text>
+                                    <Button target="_blank" href={item.link} className="featuredBtn">Buy</Button>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                    )
+                }
+            })
+        } else {
             return (
-                <div className="col-12 col-md-6 col-xxl-4">
-                    <Card className="HomeShopCard">
-                        <Card.Header>
-                            <h5>{item.title}</h5>
-                            {item.price}
-                        </Card.Header>
-                        <Card.Header>
-                            <center>
-                                <img className="HomeLefthandCardImg" src={item.ImageUrl}/>
-                            </center>
-                        </Card.Header>
-                        <Card.Body>
-                            <Card.Text>
-                                {item.description}
-                            </Card.Text>
-                            <Button target="_blank" href={item.link} className="featuredBtn">Buy</Button>
-                        </Card.Body>
-                    </Card>
-                </div>
+                <center>
+                    <h5>No Store Items</h5>
+                </center>
             )
-        })
+        }
     }
 
     return (
@@ -61,7 +75,7 @@ function Store() {
             <NavigationBar />
             <Container>
                 <Row>
-                    {storeItems()}
+                    {mappingStoreItems()}
                 </Row>
             </Container>
             <Footer />
