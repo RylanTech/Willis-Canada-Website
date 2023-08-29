@@ -20,6 +20,7 @@ function AdminEvent() {
                 navigate("/")
             }
             let evnts = await getEvents()
+            evnts = evnts.reverse();
             setEvents(evnts)
         }
         verifing();

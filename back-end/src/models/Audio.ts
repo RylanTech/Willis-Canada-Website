@@ -18,15 +18,15 @@ export function AudioFactory(sequelize: Sequelize) {
         },
         url: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         title: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         date: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         }
     },
         {

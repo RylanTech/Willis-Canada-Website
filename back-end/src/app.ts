@@ -19,11 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // incoming requests
 const cors = require('cors');
-const corsOptions = {
-  origin: ['http://localhost:3000', 'https://williscanada.com', 'https://williscanadaapi.com'],
-};
+app.use(cors());
 
-app.use(cors(corsOptions));
 
 
 // Routing Middleware
