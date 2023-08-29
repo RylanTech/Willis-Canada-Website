@@ -19,7 +19,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // incoming requests
 const cors = require('cors');
-app.use(cors());
+const corsOptions = {
+  origin: '*', // This allows requests from any origin
+};
+
+app.use(cors(corsOptions));
 
 
 // Routing Middleware

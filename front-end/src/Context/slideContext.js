@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useState } from "react";
 
 export const SlideContext = createContext()
-let baseUrl = "http://localhost:3001/"
+let baseUrl = "http://williscanadaapi.online/"
 
 export const SlideProvider = (props) => {
 

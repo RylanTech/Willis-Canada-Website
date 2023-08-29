@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext } from "react";
 
 export const StoreItemContext = createContext()
-let baseUrl = "http://localhost:3001/"
+let baseUrl = "http://williscanadaapi.online/"
 
 export const StoreItemProvider = (props) => {
 
