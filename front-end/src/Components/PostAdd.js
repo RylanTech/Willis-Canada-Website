@@ -59,7 +59,7 @@ function PostAdd() {
                                 <textarea className="itemTA col-12" type="text" name="message" value={message} onChange={handleChange} />
                                 {/* <Form.Control type="text" name="message" value={message} onChange={handleChange} /> */}
                             </Form.Group>
-                            <Button type="submit">Edit</Button>
+                            <Button type="submit">Add</Button>
                         </Form>
                     </div>
                 </Row>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useState } from "react";
 
 export const ItemContext = createContext()
-let baseUrl = "http://williscanadaapi.online/"
+let baseUrl = "https://williscanadaapi.online/"
 
 export const ItemProvider = (props) => {
 
