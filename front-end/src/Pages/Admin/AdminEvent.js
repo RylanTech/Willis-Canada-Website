@@ -20,7 +20,7 @@ function AdminEvent() {
                 navigate("/")
             }
             let evnts = await getEvents()
-            evnts = evnts.reverse();
+            evnts = evnts.sort((a, b) => new Date(a.date) - new Date(b.date));
             setEvents(evnts)
         }
         verifing();

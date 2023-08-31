@@ -39,7 +39,7 @@ function Photos() {
         } else {
             return (
                 <center>
-                    <h5>No Photos</h5>
+                    <h5>No Photos.. yet</h5>
                     <hr />
                 </center>
             );

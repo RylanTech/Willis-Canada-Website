@@ -10,6 +10,7 @@ function Homepage() {
     const [items, setItems] = useState("")
     const [posts, setPosts] = useState("")
     const [slides, setSlides] = useState("")
+    const [slideCol, setSlideCol] = useState("col-12 col-md-8")
 
     const { getItems } = useContext(ItemContext)
     const { getPosts } = useContext(PostContext)
@@ -25,6 +26,8 @@ function Homepage() {
 
             let slds = await getSlides()
             setSlides(slds)
+
+            
         }
         gettingInfo()
     }, [])
@@ -43,9 +46,7 @@ function Homepage() {
             })
         } else {
             return (
-                <center>
-                    No Slides
-                </center>
+                <></>
             )
         }
     }
@@ -53,13 +54,13 @@ function Homepage() {
     function postingPosts() {
         function addLinkToText(inputString) {
             const urlRegex = /(https?:\/\/[^\s]+)/g;
-          
+
             const modifiedString = inputString.replace(urlRegex, (match) => {
-              return `<a href="${match}" target="_blank">${match}</a>`;
+                return `<a href="${match}" target="_blank">${match}</a>`;
             });
-          
+
             return <span dangerouslySetInnerHTML={{ __html: modifiedString }} />;
-          }
+        }
 
         if (posts.length) {
             return posts.map((post) => {
@@ -76,15 +77,16 @@ function Homepage() {
             })
         } else {
             return (
-                <Card className="infoCard">
-                    <Card.Header as="h5">No Posts</Card.Header>
-                </Card>
+                <></>
             )
         }
     }
 
     function shoppingItems() {
-        if (items.length) {
+        function mapThroughItems() {
+            if (items.length === 0) {
+                setSlideCol("col-12")
+            }
             return items.map((item) => {
                 if (item.imageUrl.length > 3) {
                     return (
@@ -123,12 +125,21 @@ function Homepage() {
                     )
                 }
             })
-        } else {
+        }
+
+        if (items.length) {
             return (
-                <center>
-                    No Featured Items
-                </center>
+                <>
+                <div className="featured">
+                    <center>
+                        Featured
+                    </center>
+                </div>
+                {mapThroughItems()}
+                </>
             )
+        } else {
+            return <></>
         }
     }
     return (
@@ -136,28 +147,23 @@ function Homepage() {
             <NavigationBar />
             <Container>
                 <Row>
-                    <div className="col-12 col-md-8">
-                        <Carousel className="col-12">
+                    <div className={slideCol}>
+                        <Carousel>
                             {carouselSlide()}
                         </Carousel>
                         <center>
-                        <br/>
-                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                            <input name="cmd" type="hidden" value="_s-xclick" />
-                            <input name="hosted_button_id" type="hidden" value="QNNKVRYK3UXQ8" />
-                            <input alt="PayPal - The safer, easier way to pay online!" border="0" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" type="image" />
-                            <img alt="" border="0" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" />
-                        </form>
+                            <br />
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                <input name="cmd" type="hidden" value="_s-xclick" />
+                                <input name="hosted_button_id" type="hidden" value="QNNKVRYK3UXQ8" />
+                                <input alt="PayPal - The safer, easier way to pay online!" border="0" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" type="image" />
+                                <img alt="" border="0" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" />
+                            </form>
                         </center>
                         {postingPosts()}
 
                     </div>
                     <div className="col-12 col-md-4">
-                        <div className="featured">
-                            <center>
-                                Featured
-                            </center>
-                        </div>
                         {shoppingItems()}
                     </div>
                 </Row>
