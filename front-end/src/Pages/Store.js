@@ -64,7 +64,7 @@ function Store() {
         } else {
             return (
                 <center>
-                    <h5>No Store Items</h5>
+                    <h5>Come back later to see the store.</h5>
                 </center>
             )
         }

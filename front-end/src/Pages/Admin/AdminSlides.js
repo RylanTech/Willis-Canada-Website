@@ -27,6 +27,18 @@ function AdminSlides() {
     }, [])
 
     function carouselSlide() {
+        function isMsg(msg) {
+            if (msg) {
+                return (
+                    <p className="slideMsg">
+                        {msg}
+                    </p>
+                )
+            } else {
+                return
+            }
+        }
+
         if (slides.length) {
             return slides.map((slide) => {
                 return (
@@ -36,7 +48,7 @@ function AdminSlides() {
                                 <img className="editSlideImg" src={slide.imageUrl} />
                             </div>
                             <div className="slideMessage col-12 col-md-4">
-                                <p className="slideMsg">{slide.message}</p>
+                                {isMsg(slide.message)}
                             </div>
                         </Row>
                         <center>

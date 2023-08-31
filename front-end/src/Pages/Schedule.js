@@ -21,7 +21,7 @@ function Schedule() {
                 navigate("/")
             }
             let evnts = await getEvents()
-            evnts = evnts.reverse();
+            evnts = evnts.sort((a, b) => new Date(a.date) - new Date(b.date));
             setEvents(evnts)
         }
         verifing();
@@ -59,7 +59,7 @@ function Schedule() {
             daySuffix = "th";
         }
 
-        const formattedDate = `${month} ${day}${daySuffix} at ${formattedHour}:${minute < 10 ? '0' : ''}${minute}${amPm}`;
+        const formattedDate = `${month} ${day}${daySuffix} at ${formattedHour}:${minute < 10 ? '0' : ''}${minute}${amPm} ${year}`;
 
         return formattedDate;
     }

@@ -1,7 +1,23 @@
+import { useContext, useEffect } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { UserContext } from "../Context/userContext";
 
 function AdminNavigationBar() {
+
+    let navigate = useNavigate()
+    const { verify } = useContext(UserContext)
+
+    useEffect(() => {
+        async function verifing() {
+            let status = await verify()
+            if (!status) {
+                navigate("/")
+            }
+        }
+        verifing();
+    }, [])
+
     document.body.style = 'background: black';
     return (
         <>
