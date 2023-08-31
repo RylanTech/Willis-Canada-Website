@@ -25,11 +25,18 @@ function EventEdit() {
             await getEvent(eventId)
                 .then((event) => {
                     // event.date = new Date(event.date).toISOString()
+                    event.date = convertToUTC(event.date)
                     setEvnt(event)
                 })
         }
         fetch()
     }, [eventId])
+
+    function convertToUTC(dateString) {
+        const date = new Date(dateString);
+        const utcDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+        return utcDate;
+    }
 
     function handleChange(event) {
         setEvnt((preValue) => {

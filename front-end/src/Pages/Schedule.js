@@ -21,10 +21,17 @@ function Schedule() {
                 navigate("/")
             }
             let evnts = await getEvents()
+            evnts = evnts.reverse();
             setEvents(evnts)
         }
         verifing();
     }, [])
+
+    function convertToUTC(dateString) {
+        const date = new Date(dateString);
+        const utcDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+        return utcDate;
+    }
 
     function formatDateToWord(date) {
         const months = [
@@ -60,7 +67,7 @@ function Schedule() {
     function EventList() {
         if (events.length) {
             return events.map((event) => {
-                let date = formatDateToWord(new Date(event.date))
+                let date = formatDateToWord(convertToUTC(new Date(event.date)))
                 return (
                     <>
                         <div className="col-xl-2" />

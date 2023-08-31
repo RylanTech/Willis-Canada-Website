@@ -11,7 +11,7 @@ function EventAdd() {
         title: "",
         date: "",
         location: "",
-        description: "",
+        description: " ",
         eventId: params.eventId
     })
 

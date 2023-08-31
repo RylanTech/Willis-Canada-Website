@@ -51,6 +51,16 @@ function Homepage() {
     }
 
     function postingPosts() {
+        function addLinkToText(inputString) {
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+          
+            const modifiedString = inputString.replace(urlRegex, (match) => {
+              return `<a href="${match}" target="_blank">${match}</a>`;
+            });
+          
+            return <span dangerouslySetInnerHTML={{ __html: modifiedString }} />;
+          }
+
         if (posts.length) {
             return posts.map((post) => {
                 return (
@@ -58,7 +68,7 @@ function Homepage() {
                         <Card.Header as="h5">{post.title}</Card.Header>
                         <Card.Body>
                             <Card.Text>
-                                {post.message}
+                                {addLinkToText(post.message)}
                             </Card.Text>
                         </Card.Body>
                     </Card>

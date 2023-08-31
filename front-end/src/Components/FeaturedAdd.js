@@ -10,7 +10,7 @@ function FeaturedAdd() {
     let navigate = useNavigate()
     let [item, setItem] = useState({
         title: "",
-        description: "",
+        description: " ",
         price: "",
         itemId: params.itemId,
         imageUrl: "",

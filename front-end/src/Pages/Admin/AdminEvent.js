@@ -26,6 +26,12 @@ function AdminEvent() {
         verifing();
     }, [])
 
+    function convertToUTC(dateString) {
+        const date = new Date(dateString);
+        const utcDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+        return utcDate;
+    }
+
     function formatDateToWord(date) {
         const months = [
           "January", "February", "March", "April",
@@ -53,14 +59,15 @@ function AdminEvent() {
         }
       
         const formattedDate = `${month} ${day}${daySuffix} at ${formattedHour}:${minute < 10 ? '0' : ''}${minute}${amPm}`;
-      
+        
         return formattedDate;
       }
 
     function postingEvent() {
         if (events.length) {
             return events.map((event) => {
-                let date = formatDateToWord(new Date(event.date))
+                console.log(event.date)
+                let date = formatDateToWord(convertToUTC(new Date(event.date)))
                 return (
                     <div key={event.eventId}>
                         <div className="col-xl-2" />

@@ -10,7 +10,7 @@ function StoreItemAdd() {
     let navigate = useNavigate()
     let [item, setItem] = useState({
         title: "",
-        description: "",
+        description: " ",
         price: "",
         storeitemId: params.storeitemId,
         imageUrl: "",
