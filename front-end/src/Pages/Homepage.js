@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react"
 import { ItemContext } from "../Context/itemContext"
 import { PostContext } from "../Context/postContext"
 import { SlideContext } from "../Context/slideContext"
+import { Link } from "react-router-dom"
 
 function Homepage() {
     const [items, setItems] = useState("")
@@ -16,10 +17,53 @@ function Homepage() {
     const { getPosts } = useContext(PostContext)
     const { getSlides } = useContext(SlideContext)
 
+    const storeItems = [
+        {
+            id: 1,
+            title: "Beyond the cross",
+            price: "30",
+            description: `(DOUBLE CD: Which includes 17 tracks from Beyond The Cross & Reaching)
+            WCCD150 - Beyond The Cross - Long Play CD (17 songs)`,
+            songs: <p>
+                Latter Rain 
+                He Always Does
+                Angels Rejoice"
+                The Service Begins
+                Joy Beyond The Cross
+                Can't You Feel His Spirit
+                Somewhere Underneath The Blood
+
+                Also Includes Willis Canada's "REACHING":
+
+                Precious Lord
+                Washed In The Blood
+                Now The Sun Shines
+                He'll Do It Again
+                On Some Ordinary Day
+                Homeland Look
+                I Surrender All
+                Lost In The Presence
+                First Drop Of Blood
+                What He Paid For
+            </p>,
+            imageUrl: "https://i.postimg.cc/pLmsV81L/Willis-Canada-Beyondthe-Cross-1.jpg",
+            link: <>
+                <input name="cmd" type="hidden" value="_cart" />
+                <input name="business" type="hidden" value="willisc@mindspring.com" />
+                <input name="item_name" type="hidden" value="Beyond The Cross - CD" />
+                <input name="item_number" type="hidden" value="WCCD150" />
+                <input name="amount" type="hidden" value="20.00" />
+                <input name="no_note" type="hidden" value="1" />
+                <input name="currency_code" type="hidden" value="USD" />
+                <input name="add" type="hidden" value="1" />
+            </>
+        }
+    ]
+
     useEffect(() => {
         async function gettingInfo() {
-            let itms = await getItems()
-            setItems(itms)
+            // let itms = await getItems()
+            setItems(storeItems)
 
             let psts = await getPosts()
             setPosts(psts)
@@ -27,7 +71,7 @@ function Homepage() {
             let slds = await getSlides()
             setSlides(slds)
 
-            
+
         }
         gettingInfo()
     }, [])
@@ -88,23 +132,25 @@ function Homepage() {
                 setSlideCol("col-12")
             }
             return items.map((item) => {
-                if (item.imageUrl.length > 3) {
+                if (item.imageUrl) {
                     return (
-                        <Card className="HomeShopCard" key={item.itemId}>
+                        <Card className="HomeShopCard" key={item.title}>
                             <Card.Header>
                                 <h5>{item.title}</h5>
-                                {item.price}
+                                ${item.price}
                             </Card.Header>
                             <Card.Header>
                                 <center>
-                                    <img className="HomeLefthandCardImg" src={item.imageUrl} />
+                                    <img className="HomeLefthandCardImg" src={item.imageUrl} alt={item.title} />
                                 </center>
                             </Card.Header>
                             <Card.Body>
                                 <Card.Text>
                                     {item.description}
                                 </Card.Text>
-                                <Button target="_blank" href={item.link} className="featuredBtn">Buy</Button>
+                                <Button className="col-12">
+                                    <Link to={`/store/${item.id}`}>View</Link>
+                                </Button>
                             </Card.Body>
                         </Card>
                     )
@@ -119,7 +165,13 @@ function Homepage() {
                                 <Card.Text>
                                     {item.description}
                                 </Card.Text>
-                                <Button target="_blank" href={item.link} className="featuredBtn">Buy</Button>
+                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="paypal">
+                                    <Button className="col-12" type="submit">
+
+                                        {item.link}
+                                        Buy
+                                    </Button>
+                                </form>
                             </Card.Body>
                         </Card>
                     )
@@ -130,12 +182,12 @@ function Homepage() {
         if (items.length) {
             return (
                 <>
-                <div className="featured">
-                    <center>
-                        Featured
-                    </center>
-                </div>
-                {mapThroughItems()}
+                    <div className="featured">
+                        <center>
+                            Featured
+                        </center>
+                    </div>
+                    {mapThroughItems()}
                 </>
             )
         } else {

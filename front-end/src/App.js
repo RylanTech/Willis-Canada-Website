@@ -24,6 +24,7 @@ import EventAdd from "./Components/EventAdd";
 import AdminStore from "./Pages/Admin/AdminStore";
 import StoreItemEdit from "./Components/StoreItemEdit";
 import StoreItemAdd from "./Components/StoreItemAdd";
+import Items from "./Pages/Items";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/schedule" element={<Schedule/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/store" element={<Store/>}/>
+        <Route path="/store/:id" element={<Items/>}/>
 
         <Route path="/admin" element={<AdminLogin/>}/>
 
