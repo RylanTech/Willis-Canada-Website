@@ -188,6 +188,28 @@ a:hover {
   color: black!important;
 }
 
+/* Guest book */
+.gbHeaderOver {
+  border: 1px solid #C89FDA!important;
+  width: 300px;
+  margin: 20px;
+}
+.gbHeader {
+  font-family: 'Allura', cursive;
+  font-size: 50px;
+  margin-top: 10px!important;
+}
+.inputGB {
+  display: inline-block;
+}
+.gbPost {
+  margin: 15px;
+}
+.overGbPost {
+  border: 1px solid #C89FDA!important;
+}
+
+
 @media (max-width: 500px) {
   .footerR {
     position: relative; top: 0px;

@@ -25,6 +25,7 @@ import AdminStore from "./Pages/Admin/AdminStore";
 import StoreItemEdit from "./Components/StoreItemEdit";
 import StoreItemAdd from "./Components/StoreItemAdd";
 import Items from "./Pages/Items";
+import GuestBook from "./Pages/GuestBook";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/store" element={<Store/>}/>
         <Route path="/store/:id" element={<Items/>}/>
+        <Route path="/guestbook" element={<GuestBook/>}/>
 
         <Route path="/admin" element={<AdminLogin/>}/>
 

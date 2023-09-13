@@ -19,14 +19,6 @@ function NavigationBar() {
 
   document.body.style = 'background: black';
 
-  // function areStoreItems() {
-  //   if (storeItems.length === 0) {
-  //     return
-  //   } else {
-  //     return <Link className="nav-link" to="/store">Store</Link>
-  //   }
-  // }
-
   return (
     <>
       <div>
@@ -43,6 +35,7 @@ function NavigationBar() {
                 <Link className="nav-link" to="/photos">Photos</Link>
                 <Link className="nav-link" to="/schedule">Schedule</Link>
                 <Link className="nav-link" to="/store">Store</Link>
+                <Link className="nav-link" to="/guestbook">Guest Book</Link>
                 <Link className="nav-link" to="/contact">Contact</Link>
               </Nav>
             </Navbar.Collapse>
