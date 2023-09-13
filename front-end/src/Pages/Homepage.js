@@ -20,43 +20,77 @@ function Homepage() {
     const storeItems = [
         {
             id: 1,
-            title: "Beyond the cross",
-            price: "30",
+            title: "BEYOND THE CROSS - (CD & Cassette)",
+            price: "CD - $20 | Cassette $12",
             description: `(DOUBLE CD: Which includes 17 tracks from Beyond The Cross & Reaching)
             WCCD150 - Beyond The Cross - Long Play CD (17 songs)`,
             songs: <p>
-                Latter Rain 
-                He Always Does
-                Angels Rejoice"
-                The Service Begins
-                Joy Beyond The Cross
-                Can't You Feel His Spirit
-                Somewhere Underneath The Blood
+                Latter Rain<br />
+                He Always Does<br />
+                Angels Rejoice<br />
+                The Service Begins<br />
+                Joy Beyond The Cross<br />
+                Can't You Feel His Spirit<br />
+                Somewhere Underneath The Blood<br />
 
-                Also Includes Willis Canada's "REACHING":
+                Also Includes Willis Canada's "REACHING":<br /><br />
 
-                Precious Lord
-                Washed In The Blood
-                Now The Sun Shines
-                He'll Do It Again
-                On Some Ordinary Day
-                Homeland Look
-                I Surrender All
-                Lost In The Presence
-                First Drop Of Blood
-                What He Paid For
+                Precious Lord<br />
+                Washed In The Blood<br />
+                Now The Sun Shines<br />
+                He'll Do It Again<br />
+                On Some Ordinary Day<br />
+                Homeland Look<br />
+                I Surrender All<br />
+                Lost In The Presence<br />
+                First Drop Of Blood<br />
+                What He Paid For<br />
             </p>,
             imageUrl: "https://i.postimg.cc/pLmsV81L/Willis-Canada-Beyondthe-Cross-1.jpg",
-            link: <>
-                <input name="cmd" type="hidden" value="_cart" />
-                <input name="business" type="hidden" value="willisc@mindspring.com" />
-                <input name="item_name" type="hidden" value="Beyond The Cross - CD" />
-                <input name="item_number" type="hidden" value="WCCD150" />
-                <input name="amount" type="hidden" value="20.00" />
-                <input name="no_note" type="hidden" value="1" />
-                <input name="currency_code" type="hidden" value="USD" />
-                <input name="add" type="hidden" value="1" />
-            </>
+            link: {
+                CD: <>
+                    <input name="cmd" type="hidden" value="_cart" />
+                    <input name="business" type="hidden" value="willisc@mindspring.com" />
+                    <input name="item_name" type="hidden" value="Beyond The Cross - CD" />
+                    <input name="item_number" type="hidden" value="WCCD150" />
+                    <input name="amount" type="hidden" value="20.00" />
+                    <input name="no_note" type="hidden" value="1" />
+                    <input name="currency_code" type="hidden" value="USD" />
+                    <input name="add" type="hidden" value="1" />
+                </>,
+                Cassette: <>
+                    <input name="cmd" type="hidden" value="_cart" />
+                    <input name="business" type="hidden" value="willisc@mindspring.com" />
+                    <input name="item_name" type="hidden" value="BEYOND THE CROSS - Cassette" />
+                    <input name="item_number" type="hidden" value="WCCAS120" />
+                    <input name="amount" type="hidden" value="12.00" />
+                    <input name="no_note" type="hidden" value="1" />
+                    <input name="currency_code" type="hidden" value="USD" />
+                    <input name="add" type="hidden" value="1" />
+                </>
+
+            }
+        },{
+            id: 12,
+            title: "WAYMAKER",
+            price: "$20",
+            description: "",
+            imageUrl: "https://i.postimg.cc/s21cqyLC/waymaker-front.jpg",
+            imageUrl2: "https://i.postimg.cc/ZRSW3xps/waymaker-back.jpg",
+            songs: <p>
+                Heaven Sounding Sweeter<br />
+                I am Redeemed<br />
+                Break Every Chain<br />
+                Use Me Lord<br />
+                Trust Me
+            </p>,
+            link: {
+                CD: <>
+                    <input name="cmd" type="hidden" value="_s-xclick" />
+                    <input name="hosted_button_id" type="hidden" value="JH3XYZQA9E5FL" />
+                    <img alt="" border="0" height="1" src="./Latest Releases_files/pixel.gif" width="1" />
+                </>
+            }
         }
     ]
 
@@ -137,7 +171,7 @@ function Homepage() {
                         <Card className="HomeShopCard" key={item.title}>
                             <Card.Header>
                                 <h5>{item.title}</h5>
-                                ${item.price}
+                                {item.price}
                             </Card.Header>
                             <Card.Header>
                                 <center>
@@ -148,9 +182,9 @@ function Homepage() {
                                 <Card.Text>
                                     {item.description}
                                 </Card.Text>
-                                <Button className="col-12">
-                                    <Link to={`/store/${item.id}`}>View</Link>
-                                </Button>
+                                <Link to={`/store/${item.id}`}>
+                                    <Button className="col-12">View</Button>
+                                </Link>
                             </Card.Body>
                         </Card>
                     )

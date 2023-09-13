@@ -17,9 +17,6 @@ function Schedule() {
     useEffect(() => {
         async function verifing() {
             let status = await verify()
-            if (!status) {
-                navigate("/")
-            }
             let evnts = await getEvents()
             evnts = evnts.sort((a, b) => new Date(a.date) - new Date(b.date));
             setEvents(evnts)
