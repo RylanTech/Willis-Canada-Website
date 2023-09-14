@@ -13,7 +13,7 @@ function Homepage() {
     const [slides, setSlides] = useState("")
     const [slideCol, setSlideCol] = useState("col-12 col-md-8")
 
-    const { getItems } = useContext(ItemContext)
+    // const { getItems } = useContext(ItemContext)
     const { getPosts } = useContext(PostContext)
     const { getSlides } = useContext(SlideContext)
 

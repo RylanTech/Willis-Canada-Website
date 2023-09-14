@@ -35,6 +35,7 @@ function AdminNavigationBar() {
                                 <Link className="nav-link" to="/admin/slides">Slides</Link>
                                 <Link className="nav-link" to="/admin/photos">Photos</Link>
                                 <Link className="nav-link" to="/admin/events">Schedule</Link>
+                                <Link className="nav-link" to="/admin/guestbook">Guest Book</Link>
                                 <Link className="nav-link" to="/admin/store">Store</Link>
                                 <Link className="nav-link" to="/">Back to Home</Link>
                             </Nav>

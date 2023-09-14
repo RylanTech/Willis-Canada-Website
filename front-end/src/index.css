@@ -208,6 +208,9 @@ a:hover {
 .overGbPost {
   border: 1px solid #C89FDA!important;
 }
+.gbbtn2 {
+  margin-top: 15px!important;
+}
 
 
 @media (max-width: 500px) {

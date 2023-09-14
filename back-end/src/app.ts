@@ -8,6 +8,7 @@ import postRoutes from './routes/postRoutes'
 import slideRoutes from './routes/slideRoutes'
 import userRoutes from './routes/userRoutes'
 import storeItemRoutes from './routes/storeItemRoutes'
+import guestbookRoutes from './routes/guestBookRoutes'
 import { verify } from './controllers/userController';
 
 const app = express();
@@ -31,6 +32,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/photo', photoRoutes);
 app.use('/api/event', eventRoutes);
 app.use('/api/storeitem', storeItemRoutes)
+app.use('/api/guestbook', guestbookRoutes);
 app.use('/api/verify', verify);
 
 

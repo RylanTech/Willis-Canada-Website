@@ -10,24 +10,27 @@ import { SlideProvider } from './Context/slideContext';
 import { PhotoProvider } from './Context/photoContext';
 import { EventProvider } from './Context/eventContext';
 import { StoreItemProvider } from './Context/storeItemContext';
+import { GuestBookProvider } from './Context/guestBookContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <StoreItemProvider>
-      <EventProvider>
-        <PhotoProvider>
-          <SlideProvider>
-            <PostProvider>
-              <ItemProvider>
-                <UserProvider>
-                  <App />
-                </UserProvider>
-              </ItemProvider>
-            </PostProvider>
-          </SlideProvider>
-        </PhotoProvider>
-      </EventProvider>
-    </StoreItemProvider>
+    <GuestBookProvider>
+      <StoreItemProvider>
+        <EventProvider>
+          <PhotoProvider>
+            <SlideProvider>
+              <PostProvider>
+                <ItemProvider>
+                  <UserProvider>
+                    <App />
+                  </UserProvider>
+                </ItemProvider>
+              </PostProvider>
+            </SlideProvider>
+          </PhotoProvider>
+        </EventProvider>
+      </StoreItemProvider>
+    </GuestBookProvider>
   </React.StrictMode>
 );

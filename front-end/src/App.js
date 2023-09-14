@@ -26,6 +26,7 @@ import StoreItemEdit from "./Components/StoreItemEdit";
 import StoreItemAdd from "./Components/StoreItemAdd";
 import Items from "./Pages/Items";
 import GuestBook from "./Pages/GuestBook";
+import AdminGuestBook from "./Pages/Admin/AdminGuestBook";
 
 function App() {
   return (
@@ -65,6 +66,8 @@ function App() {
         <Route path="/admin/store" element={<AdminStore/>}/>
         <Route path="/admin/store/edit/:storeitemId" element={<StoreItemEdit/>}/>
         <Route path="/admin/store/add" element={<StoreItemAdd/>}/>
+
+        <Route path="/admin/guestbook" element={<AdminGuestBook/>}/>
       </Routes>
     </BrowserRouter>
   );
