@@ -30,7 +30,7 @@ function Items() {
                 The Service Begins<br />
                 Joy Beyond The Cross<br />
                 Can't You Feel His Spirit<br />
-                Somewhere Underneath The Blood<br />
+                Somewhere Underneath The Blood<br /><br />
 
                 Also Includes Willis Canada's "REACHING":<br /><br />
 
@@ -68,7 +68,8 @@ function Items() {
                     <input name="add" type="hidden" value="1" />
                 </>
 
-            }
+            },
+            spotify: <iframe src="https://open.spotify.com/embed/track/3abnm5HdwTRKaOoeUY0i3Z?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         },
         {
             id: 2,
@@ -109,7 +110,7 @@ function Items() {
                 I am Redeemed<br />
                 Break Every Chain<br />
                 Use Me Lord<br />
-                Thank You Lord<br/>
+                Thank You Lord<br />
                 Trust Me
             </p>,
             link: {
@@ -118,7 +119,8 @@ function Items() {
                     <input name="hosted_button_id" type="hidden" value="JH3XYZQA9E5FL" />
                     <img alt="" border="0" height="1" src="./Latest Releases_files/pixel.gif" width="1" />
                 </>
-            }
+            },
+            spotify: <iframe src="https://open.spotify.com/embed/album/3ubE5CTrNgLpmYTLwQTjqG?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         },
         {
             id: 13,
@@ -128,13 +130,13 @@ function Items() {
             imageUrl2: "https://i.postimg.cc/155WxL4B/willisbackcover01.jpg",
             imageUrl: "https://i.postimg.cc/5tvgqJk4/Willisfron-Cover01.jpg",
             songs: <p>
-                I Know a Place<br/>
-                Moses Take Your Shoes Off<br/>
-                God Come Through<br/>
-                By and By<br/>
-                I Can't Even Walk<br/>
-                Where Would I Be<br/>
-                I Know the Lord Will Make Always<br/>
+                I Know a Place<br />
+                Moses Take Your Shoes Off<br />
+                God Come Through<br />
+                By and By<br />
+                I Can't Even Walk<br />
+                Where Would I Be<br />
+                I Know the Lord Will Make Always<br />
                 Your Grace and Mercy
             </p>,
             link: {
@@ -142,7 +144,8 @@ function Items() {
                     <input name="cmd" type="hidden" value="_s-xclick" />
                     <input name="hosted_button_id" type="hidden" value="NHSHZCNUHBWEG" />
                 </>
-            }
+            },
+            spotify: <iframe src="https://open.spotify.com/embed/album/0BZkQYvnoPIM2KFAVqo8kD?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         },
         {
             id: 3,
@@ -224,7 +227,8 @@ function Items() {
                     <input name="currency_code" type="hidden" value="USD" />
                     <input name="add" type="hidden" value="1" />
                 </>
-            }
+            },
+            spotify: <iframe src="https://open.spotify.com/embed/track/3abnm5HdwTRKaOoeUY0i3Z?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         },
         {
             id: 5,
@@ -443,7 +447,8 @@ function Items() {
                     <input name="currency_code" type="hidden" value="USD" />
                     <input name="add" type="hidden" value="1" />
                 </>
-            }
+            },
+            spotify: <iframe src="https://open.spotify.com/embed/track/3abnm5HdwTRKaOoeUY0i3Z?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         },
         {
             id: 11,
@@ -503,9 +508,26 @@ function Items() {
                                 <h1>{data.title}</h1>
                                 <h2>{data.price}</h2>
                                 <br />
-                                <p>{data.description}</p>
+                                <Row>
+                                    {data.spotify ? (
+                                        <>
+                                            <div className="col-12 col-md-6">
+                                                {data.songs}
+                                            </div>
+                                            <div className="col-12 col-md-6">
+                                                {data.spotify}
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                        <div className="col-12 col-md-6">
+                                                {data.songs}
+                                            </div>
+                                        </>
+                                    )}
+                                </Row>
                                 <br />
-                                <p>{data.songs}</p>
+                                <p>{data.description}</p>
                                 <Row>
                                     {Object.keys(data.link).map(version => {
                                         return (
@@ -538,17 +560,24 @@ function Items() {
                         </>
                     ) : (
                         <>
-                            <div className="col-md-2" />
-                            <div className="col-12 col-md-6">
+                            <Row>
+                            <div className="col-12">
                                 <h1>{data.title}</h1>
                                 <h2>{data.price}</h2>
                                 <br />
-                                <p>{data.description}</p>
+                                <Row>
+                                    <div className="col-6">
+                                        <p>{data.songs}</p>
+                                    </div>
+                                    <div className="col-6">
+                                        <div className="noImgSpot col-12">
+                                        {data.spotify}
+                                        </div>
+                                    </div>
+                                </Row>
                                 <br />
-                                <p>{data.songs}</p>
-
-                            </div>
-                            <div className="col-12 col-md-2 buyButtonNoImg">
+                                <p>{data.description}</p>
+                                <div className="col-12 col-md-6 buyButtonNoImg">
                                 <Row>
                                     {Object.keys(data.link).map(version => {
                                         return (
@@ -565,6 +594,9 @@ function Items() {
                                     })}
                                 </Row>
                             </div>
+                            </div>
+                           
+                            </Row>
                         </>
                     )}
                 </Row>

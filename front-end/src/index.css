@@ -211,6 +211,9 @@ a:hover {
 .gbbtn2 {
   margin-top: 15px!important;
 }
+.noImgSpot {
+  border: 1px solid red;
+}
 
 
 @media (max-width: 500px) {

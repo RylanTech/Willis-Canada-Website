@@ -10,6 +10,10 @@ import userRoutes from './routes/userRoutes'
 import storeItemRoutes from './routes/storeItemRoutes'
 import guestbookRoutes from './routes/guestBookRoutes'
 import { verify } from './controllers/userController';
+import multer from 'multer'
+import path from 'path';
+import { user } from './models/user';
+import { verifyUser } from './services/authService';
 
 const app = express();
 
@@ -22,7 +26,17 @@ app.use(express.urlencoded({ extended: true }));
 const cors = require('cors');
 app.use(cors());
 
-
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads"); // Uploads will be stored in the 'uploads' directory
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const extension = path.extname(file.originalname);
+    cb(null, uniqueSuffix + extension); // Rename the file to include a timestamp
+  },
+});
+const upload = multer({ storage: storage });
 
 // Routing Middleware
 app.use('/api/item', itemRoutes);
@@ -34,6 +48,25 @@ app.use('/api/event', eventRoutes);
 app.use('/api/storeitem', storeItemRoutes)
 app.use('/api/guestbook', guestbookRoutes);
 app.use('/api/verify', verify);
+app.post("/api/upload-audio", upload.single("audio"), async (req, res) => {
+  try {
+    let user: user | null = await verifyUser(req);
+    if (!user) {
+      return res.status(403).send();
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded." });
+    }
+
+    const audioUrl = `/uploads/${req.file.filename}`;
+
+    res.status(200).json({ audioUrl });
+  } catch (error) {
+    console.error("Error uploading file:", error);
+    res.status(500).json({ error: "file upload failed." });
+  }
+});
 
 
 app.use(( req: Request, res: Response, next: NextFunction ) => {
