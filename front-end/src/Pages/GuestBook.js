@@ -1,44 +1,125 @@
 import { Button, Container, Form, Row } from 'react-bootstrap'
 import NavigationBar from '../Components/NavigationBar'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { GuestBookContext } from '../Context/guestBookContext'
 function GuestBook() {
-    const [name, setName] = useState("Name")
-    const [email, setEmail] = useState("Email")
-    const [message, setMessage] = useState("Message")
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [message, setMessage] = useState("")
+    const [messageSent, setMessageSent] = useState(null)
+    const [posts, setPosts] = useState()
 
-    const posts = [
-        {
-            name: "Rylan W",
-            email: "rylanworkman9@gmail.com",
-            message: "Hello there!"
-        }
-    ]
-
+    const { getAllagb, adduagb } = useContext(GuestBookContext)
 
     useEffect(() => {
-
+        async function start() {
+            const psts = await getAllagb()
+            const sortedPosts = psts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            setPosts(sortedPosts)
+        }
+        start()
     }, [])
 
     async function handleSubmit() {
+        const post = {
+            name: name,
+            email: email,
+            message: message
+        }
+        const response = await adduagb(post)
+        if (response === false) {
+            setMessageSent(false)
+        } else {
+            setMessageSent(true)
+            setName("")
+            setEmail("")
+            setMessage("")
+        }
+    }
 
+
+    function convertUTCtoLocal(utcTimestamp) {
+        const date = new Date(utcTimestamp); // Parse the UTC timestamp
+
+        // Get the user's timezone offset in minutes
+        const userTimezoneOffset = date.getTimezoneOffset();
+
+        // Adjust the date for the user's timezone
+        const localDate = new Date(date.getTime() - userTimezoneOffset * 60000);
+
+        // Format the local date and time as a readable string
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            //   second: '2-digit',
+            timeZoneName: 'short',
+        };
+
+        return localDate.toLocaleString(undefined, options);
     }
 
     function mapGuestBook() {
-        return posts.map((post) => {
-            return (
-                <>
-                    <br/>
-                    <div className='overGbPost'>
-                        <div className='gbPost'>
-                            {post.name} <br />
-                            {post.email}
-                            <hr />
-                            {post.message}
+        if (posts) {
+            return posts.map((post) => {
+                return (
+                    <div key={post.ApprovedId}>
+                        <br />
+                        <div className='overGbPost'>
+                            <div className='gbPost'>
+                                {post.name} <br />
+                                {post.email}
+                                <hr />
+                                {post.message}
+                                <br />
+                                {convertUTCtoLocal(post.createdAt)}
+                            </div>
                         </div>
                     </div>
+                )
+            })
+        }
+    }
+
+    function isMessageSent() {
+        if (messageSent === null) {
+            return (
+                <>
+                    Your post:
+                    <div className='overGbPost'>
+                        <div className='gbPost'>
+                            {name} <br />
+                            {email}
+                            <hr />
+                            {message}
+                        </div>
+                    </div>
+                    <center>
+                        Your post will be reviewed before posted<br />
+                        <Button onClick={handleSubmit}>Post</Button>
+                    </center>
                 </>
             )
-        })
+        } else if (messageSent === false) {
+            return (
+                <>
+                    <center>
+                        <h2>An error has occurred<br/>Please make sure all fields are entered</h2>
+
+                    </center>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <center>
+                        <h2>Sent!</h2>
+                    </center>
+                </>
+            )
+        }
     }
 
     return (
@@ -90,29 +171,17 @@ function GuestBook() {
                         </Form>
                         <br />
                         <div className='col-12 col-md-6'>
-                            Your post:
-                            <div className='overGbPost'>
-                                <div className='gbPost'>
-                                    {name} <br />
-                                    {email}
-                                    <hr />
-                                    {message}
-                                </div>
-                            </div>
+                            {isMessageSent()}
                         </div>
-                        <center>
-                            Your post will be reviewed before posted<br />
-                            <Button onClick={handleSubmit}>Post</Button>
-                        </center>
                     </Row>
                 </Row>
                 <Row>
-                    <div className='col-md-2'/>
+                    <div className='col-md-2' />
                     <div className='col-12 col-md-8'>
-                    {mapGuestBook()}
+                        {mapGuestBook()}
                     </div>
                 </Row>
-            </Container>
+            </Container >
         </>
     )
 }
