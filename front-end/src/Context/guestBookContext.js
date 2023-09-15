@@ -2,8 +2,7 @@ import axios from "axios";
 import { createContext } from "react";
 
 export const GuestBookContext = createContext()
-// let baseUrl = "https://williscanadaapi.online/"
-let baseUrl = "http://localhost:3001/"
+let baseUrl = "https://williscanadaapi.online/"
 
 export const GuestBookProvider = (props) => {
 

@@ -30,13 +30,13 @@ function AdminNavigationBar() {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
-                                <Link className="nav-link" to="/admin/featured">Featured</Link>
+                                {/* <Link className="nav-link" to="/admin/featured">Featured</Link> */}
                                 <Link className="nav-link" to="/admin/posts">Posts</Link>
                                 <Link className="nav-link" to="/admin/slides">Slides</Link>
                                 <Link className="nav-link" to="/admin/photos">Photos</Link>
                                 <Link className="nav-link" to="/admin/events">Schedule</Link>
                                 <Link className="nav-link" to="/admin/guestbook">Guest Book</Link>
-                                <Link className="nav-link" to="/admin/store">Store</Link>
+                                {/* <Link className="nav-link" to="/admin/store">Store</Link> */}
                                 <Link className="nav-link" to="/">Back to Home</Link>
                             </Nav>
                         </Navbar.Collapse>

@@ -106,7 +106,7 @@ function GuestBook() {
             return (
                 <>
                     <center>
-                        <h2>An error has occurred<br/>Please make sure all fields are entered</h2>
+                        <h2>An error has occurred<br />Please make sure all fields are entered</h2>
 
                     </center>
                 </>
@@ -135,7 +135,8 @@ function GuestBook() {
                         </div>
                     </center>
                     <Row>
-                        <Form className='col-12 col-md-6'>
+                        <div className='col-12 col-md-4'>
+                        <Form>
                             <Form.Group className=''>
                                 <Form.Label>
                                     Name
@@ -170,16 +171,14 @@ function GuestBook() {
                             </Form.Group>
                         </Form>
                         <br />
-                        <div className='col-12 col-md-6'>
+                        <div className='col-12'>
                             {isMessageSent()}
                         </div>
+                        </div>
+                        <div className='col-12 col-md-8'>
+                            {mapGuestBook()}
+                        </div>
                     </Row>
-                </Row>
-                <Row>
-                    <div className='col-md-2' />
-                    <div className='col-12 col-md-8'>
-                        {mapGuestBook()}
-                    </div>
                 </Row>
             </Container >
         </>

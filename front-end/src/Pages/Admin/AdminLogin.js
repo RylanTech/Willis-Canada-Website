@@ -15,7 +15,7 @@ function AdminLogin() {
 
     async function handleSubmit() {
         signInUser(username, password).then(() => {
-            navigate("/admin/featured")
+            navigate("/admin/Posts")
         })
     }
 
