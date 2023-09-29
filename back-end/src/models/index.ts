@@ -11,6 +11,7 @@ import { unApprovedFactory } from "./unApproved";
 import { ApprovedFactory } from "./Approved";
 import 'dotenv/config';
 import { AudioFactory } from "./Audio";
+import { bioFactory } from "./Bio";
 
 const dbName = process.env.DB_NAME ?? '';
 const username = process.env.DB_USER ?? '';
@@ -32,7 +33,7 @@ storeItemFactory(sequelize)
 unApprovedFactory(sequelize)
 ApprovedFactory(sequelize)
 AudioFactory(sequelize)
-
+bioFactory(sequelize)
 
 
 export const db = sequelize;

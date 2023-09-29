@@ -142,12 +142,13 @@ function Homepage() {
 
         if (posts.length) {
             return posts.map((post) => {
+                const formattedMessage = post.message.replace(/\n/g, '<br>');
                 return (
                     <Card className="infoCard" key={post.postId}>
                         <Card.Header as="h5">{post.title}</Card.Header>
                         <Card.Body>
                             <Card.Text>
-                                {addLinkToText(post.message)}
+                                {addLinkToText(formattedMessage)}
                             </Card.Text>
                         </Card.Body>
                     </Card>

@@ -27,6 +27,8 @@ import StoreItemAdd from "./Components/StoreItemAdd";
 import Items from "./Pages/Items";
 import GuestBook from "./Pages/GuestBook";
 import AdminGuestBook from "./Pages/Admin/AdminGuestBook";
+import AdminBio from "./Pages/Admin/AdminBio";
+import BioEdit from "./Components/BioEdit";
 
 function App() {
   return (
@@ -68,6 +70,9 @@ function App() {
         <Route path="/admin/store/add" element={<StoreItemAdd/>}/>
 
         <Route path="/admin/guestbook" element={<AdminGuestBook/>}/>
+
+        <Route path="/admin/bio" element={<AdminBio/>}/>
+        <Route path="/admin/bio/edit/:id" element={<BioEdit/>}/>
       </Routes>
     </BrowserRouter>
   );

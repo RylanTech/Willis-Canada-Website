@@ -9,6 +9,7 @@ import slideRoutes from './routes/slideRoutes'
 import userRoutes from './routes/userRoutes'
 import storeItemRoutes from './routes/storeItemRoutes'
 import guestbookRoutes from './routes/guestBookRoutes'
+import bioRoutes from './routes/bioRoutes'
 import { verify } from './controllers/userController';
 import multer from 'multer'
 import path from 'path';
@@ -47,26 +48,8 @@ app.use('/api/photo', photoRoutes);
 app.use('/api/event', eventRoutes);
 app.use('/api/storeitem', storeItemRoutes)
 app.use('/api/guestbook', guestbookRoutes);
+app.use('/api/bio', bioRoutes)
 app.use('/api/verify', verify);
-app.post("/api/upload-audio", upload.single("audio"), async (req, res) => {
-  try {
-    let user: user | null = await verifyUser(req);
-    if (!user) {
-      return res.status(403).send();
-    }
-
-    if (!req.file) {
-      return res.status(400).json({ error: "No file uploaded." });
-    }
-
-    const audioUrl = `/uploads/${req.file.filename}`;
-
-    res.status(200).json({ audioUrl });
-  } catch (error) {
-    console.error("Error uploading file:", error);
-    res.status(500).json({ error: "file upload failed." });
-  }
-});
 
 
 app.use(( req: Request, res: Response, next: NextFunction ) => {

@@ -26,15 +26,17 @@ function AdminPost() {
     }, [])
 
     function postingPosts() {
+        console.log(posts)
         if (posts.length) {
             return posts.map((post) => {
+                const formattedMessage = post.message.replace(/\n/g, '<br>');
                 return (
                     <div key={post.postId}>
                         <Card className="infoCard">
                             <Card.Header as="h5">{post.title}</Card.Header>
                             <Card.Body>
                                 <Card.Text>
-                                    {post.message}
+                                    <div dangerouslySetInnerHTML={{ __html: formattedMessage }} />
                                 </Card.Text>
                             </Card.Body>
                         </Card>

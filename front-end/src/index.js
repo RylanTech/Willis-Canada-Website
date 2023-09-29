@@ -11,10 +11,12 @@ import { PhotoProvider } from './Context/photoContext';
 import { EventProvider } from './Context/eventContext';
 import { StoreItemProvider } from './Context/storeItemContext';
 import { GuestBookProvider } from './Context/guestBookContext';
+import { BioProvider } from './Context/bioContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <BioProvider>
     <GuestBookProvider>
       <StoreItemProvider>
         <EventProvider>
@@ -32,5 +34,6 @@ root.render(
         </EventProvider>
       </StoreItemProvider>
     </GuestBookProvider>
+    </BioProvider>
   </React.StrictMode>
 );
