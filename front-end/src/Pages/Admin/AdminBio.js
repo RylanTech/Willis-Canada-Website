@@ -34,7 +34,7 @@ function AdminBio() {
                         <Row className="infoCard">
                     <div className="bioRow">
                         <Row>
-                            <img className="col-12 col-md-4 willisCanadaBioImg" src="https://cress.gigsalad.com/s3/w/willis_canada_orlando/57977c93799b8_480_sq" />
+                            <img className="col-12 col-md-4 willisCanadaBioImg" src={post.bioImg} />
                             <div className="col-12 col-md-8">
                                 <p className="bioHeading">Biography</p>
                                 <br/>

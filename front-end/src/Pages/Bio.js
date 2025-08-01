@@ -1,9 +1,7 @@
 import { Container, Row } from "react-bootstrap"
 import NavigationBar from "../Components/NavigationBar"
-import Footer from "../Components/Footer"
 import { useContext, useEffect, useState } from "react"
 import { BioContext } from "../Context/bioContext"
-import { useNavigate } from "react-router-dom"
 
 function Bio() {
     const { getBio } = useContext(BioContext)
@@ -27,7 +25,7 @@ function Bio() {
                         <Row className="infoCard">
                             <div className="bioRow">
                                 <Row>
-                                    <img className="col-12 col-md-4 willisCanadaBioImg" src="https://cress.gigsalad.com/s3/w/willis_canada_orlando/57977c93799b8_480_sq" />
+                                    <img className="col-12 col-md-4 willisCanadaBioImg" src={post.bioImg} />
                                     <div className="col-12 col-md-8">
                                         <p className="bioHeading">Biography</p>
                                         <br />
@@ -67,4 +65,5 @@ function Bio() {
         </>
     )
 }
+
 export default Bio

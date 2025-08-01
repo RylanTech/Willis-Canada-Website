@@ -3,7 +3,7 @@ import { createContext } from "react";
 
 export const BioContext = createContext()
 // let baseUrl = "https://williscanadaapi.online/"
-let baseUrl = "http://localhost:3001/"
+let baseUrl = "https://williscanada.workmanapi.site/"
 
 export const BioProvider = (props) => {
 
